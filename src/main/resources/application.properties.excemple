@@ -1,3 +1,6 @@
+
+#xoá .excempple  đi để sử dụng như file cấu hình bình thường
+
 spring.application.name=shopee
 spring.mvc.trailing-slash-match=true
 
