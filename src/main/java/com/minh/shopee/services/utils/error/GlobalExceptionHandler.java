@@ -25,6 +25,7 @@ public class GlobalExceptionHandler {
     // !Ngoại lệ chung
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<ResponseData<Object>> commonException(Exception ex) {
+        log.error("Exception Herre", ex);
 
         int statusCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
         String error = "Một lỗi với vẩn nào đó chưa fix";
