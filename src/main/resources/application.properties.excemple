@@ -1,0 +1,15 @@
+spring.application.name=shopee
+spring.mvc.trailing-slash-match=true
+
+            # config database
+
+spring.jpa.show-sql: true
+
+spring.datasource.url=jdbc:mysql://localhost:3306/shopee_clone # tên database
+spring.datasource.username=username
+spring.datasource.password=password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+# spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+
+spring.jpa.hibernate.ddl-auto=update
+
