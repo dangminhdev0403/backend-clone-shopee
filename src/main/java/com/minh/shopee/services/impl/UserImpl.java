@@ -3,6 +3,7 @@ package com.minh.shopee.services.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,12 @@ public class UserImpl implements UserService {
     @Override
     public User createUser(User user) {
         if (user == null) {
-            throw new IllegalArgumentException("User cannot be null");
+            throw new UsernameNotFoundException("User cannot be null");
+        }
+
+        Optional<User> existingUser = this.userRepository.findByEmail(user.getEmail());
+        if (existingUser.isPresent()) {
+            throw new IllegalArgumentException("User already exists");
         }
 
         if (user.getPassword() != null && !user.getPassword().isEmpty()) {
@@ -61,6 +67,15 @@ public class UserImpl implements UserService {
             throw new IllegalArgumentException("User not found");
 
         }
+    }
+
+    @Override
+    public User findByEmailAndRefreshToken(String email, String refreshToken) {
+        Optional<User> user = this.userRepository.findByEmailAndRefreshToken(email, refreshToken);
+        if (!user.isPresent())
+            throw new IllegalArgumentException("User or refresh token not found");
+
+        return user.get();
     }
 
 }

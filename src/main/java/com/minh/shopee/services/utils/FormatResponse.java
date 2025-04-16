@@ -40,6 +40,7 @@ public class FormatResponse implements ResponseBodyAdvice {
         // ! kiểm tra là lỗi hay thành công
         if (body instanceof String || statusCode >= 400) {
             return body;
+
         }
         Method method = returnType.getMethod();
         ApiDescription apiDescription = null;
@@ -47,7 +48,8 @@ public class FormatResponse implements ResponseBodyAdvice {
         if (method != null) {
             apiDescription = method.getAnnotation(ApiDescription.class);
         }
-        String messageApi = apiDescription == null ? "CALL API THÀNH CÔNG" : apiDescription.value();
+        String messageApi = apiDescription == null ? "CALL API THÀNH CÔNG"
+                : apiDescription.value();
 
         return ResponseData.<Object>builder().status(statusCode).message(messageApi).data(body).build();
     }

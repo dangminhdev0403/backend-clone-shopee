@@ -11,5 +11,8 @@ public interface UserService {
     <T> List<T> getListUser(Class<T> type);
 
     User findByUsername(String username);
+
     void updateRefreshToken(String email, String refresh_token);
+
+    User findByEmailAndRefreshToken(String email, String refreshToken);
 }
