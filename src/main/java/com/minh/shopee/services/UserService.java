@@ -12,7 +12,7 @@ public interface UserService {
 
     User findByUsername(String username);
 
-    void updateRefreshToken(String email, String refresh_token);
+    void updateRefreshToken(String email, String refreshToken);
 
     User findByEmailAndRefreshToken(String email, String refreshToken);
 }

@@ -1,6 +1,7 @@
 package com.minh.shopee.services.utils.error;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 @RestControllerAdvice
-@Slf4j(topic = "GlobalException")
+@Slf4j(topic = "GlobalExceptionHandler")
 public class GlobalExceptionHandler {
 
     private ResponseData<Object> createResponseData(int status, String error, Object message) {
@@ -92,8 +93,8 @@ public class GlobalExceptionHandler {
 
         List<FieldError> fieldErrors = result.getFieldErrors();
 
-        List<String> message = fieldErrors.stream().map(FieldError::getDefaultMessage).toList();
-
+        List<Map<String, String>> message = fieldErrors.stream()
+                .map(fieldError -> Map.of(fieldError.getField(), fieldError.getDefaultMessage())).toList();
         // 📌 Log rõ lý do 404
         log.warn("⚠️ [400 VALIDATION ERROR]   Message: {}", message);
 
@@ -102,8 +103,20 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(statusCode).body(data);
     }
 
+    @ExceptionHandler(value = DuplicateException.class)
+    public ResponseEntity<ResponseData<Object>> handleDuplicateException(
+            DuplicateException ex, HttpServletRequest request) {
 
+        int statusCode = HttpStatus.CONFLICT.value(); // 409
+        String error = "Trùng dữ liệu";
+        String message = String.format("%s %s", ex.getFieldName(), ex.getMessage());
 
-    
+        log.warn("⚠️ [409 DUPLICATE DATA] Field: {} | URL: {} | Message: {}",
+                ex.getFieldName(), request.getRequestURL(), ex.getMessage());
+
+        ResponseData<Object> data = createResponseData(statusCode, error, message);
+
+        return ResponseEntity.status(statusCode).body(data);
+    }
 
 }

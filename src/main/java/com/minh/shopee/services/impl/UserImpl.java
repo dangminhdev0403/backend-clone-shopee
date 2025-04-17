@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.minh.shopee.models.User;
 import com.minh.shopee.repository.UserRepository;
 import com.minh.shopee.services.UserService;
+import com.minh.shopee.services.utils.error.DuplicateException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,7 +31,7 @@ public class UserImpl implements UserService {
 
         Optional<User> existingUser = this.userRepository.findByEmail(user.getEmail());
         if (existingUser.isPresent()) {
-            throw new IllegalArgumentException("User already exists");
+            throw new DuplicateException(user.getEmail(), "already exists");
         }
 
         if (user.getPassword() != null && !user.getPassword().isEmpty()) {

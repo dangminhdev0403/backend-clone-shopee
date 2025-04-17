@@ -136,7 +136,6 @@ public class AuthController {
         String email = decodedToken.getSubject();
 
         // ! Tìm refresh token trong database
-        User currentUser = this.userService.findByEmailAndRefreshToken(email, refreshToken.get());
 
         this.userService.updateRefreshToken(email, null);
 
