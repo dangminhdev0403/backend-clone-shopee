@@ -61,7 +61,7 @@ public class AuthController {
 
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 
-        UserDTO currentUser = this.userService.findByUsername(userRequest.getEmail() , UserDTO.class);
+        UserDTO currentUser = this.userService.findByUsername(userRequest.getEmail(), UserDTO.class);
 
         String email = currentUser.getEmail();
         String name = currentUser.getName();
@@ -101,7 +101,8 @@ public class AuthController {
         // ! chống spam
         // ? lấy thời gian gọi request
         Instant lastRequestTime = this.refreshTokensRequestTime.get(refreshToken.get());
-        if (lastRequestTime != null && Instant.now().isBefore(lastRequestTime.plus(refreshTokenAccessRequestExpiration))) {
+        if (lastRequestTime != null
+                && Instant.now().isBefore(lastRequestTime.plus(refreshTokenAccessRequestExpiration))) {
             throw new ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS, "Quá nhiều lần gọi request");
 
         }
@@ -113,7 +114,7 @@ public class AuthController {
         String email = decodedToken.getSubject();
 
         // ! Tìm User chứa refresh token tương ứng trong database
-        User currentUser = this.userService.findByEmailAndRefreshToken(email, refreshToken.get());
+        UserDTO currentUser = this.userService.findByEmailAndRefreshToken(email, refreshToken.get(), UserDTO.class);
 
         // ! Tạo access_token
         ResLoginDTO.UserLogin userLogin = ResLoginDTO.UserLogin.builder().email(email).name(currentUser.getName())

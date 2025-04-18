@@ -3,10 +3,13 @@ package com.minh.shopee.services.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.minh.shopee.models.User;
 import com.minh.shopee.repository.UserRepository;
@@ -66,29 +69,39 @@ public class UserImpl implements UserService {
         if (user.isPresent()) {
             return user.get();
         } else {
-            throw new IllegalArgumentException("User not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
     }
 
     @Override
+    @Transactional
     public void updateRefreshToken(String email, String refreshToken) {
-        Optional<User> user = this.userRepository.findByEmail(email);
-        if (user.isPresent()) {
-            user.get().setRefreshToken(refreshToken);
-            this.userRepository.save(user.get());
-        } else {
-            throw new IllegalArgumentException("User not found");
 
+        int isUpdated = this.userRepository.updateRefreshTokenByEmail(email, refreshToken);
+        if (isUpdated == 0) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
+
     }
 
     @Override
     public User findByEmailAndRefreshToken(String email, String refreshToken) {
         Optional<User> user = this.userRepository.findByEmailAndRefreshToken(email, refreshToken);
         if (!user.isPresent())
-            throw new IllegalArgumentException("User or refresh token not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User or refresh token not found");
 
         return user.get();
+    }
+
+    @Override
+    public <T> T findByEmailAndRefreshToken(String email, String refreshToken, Class<T> type) {
+        Optional<T> user = this.userRepository.findByEmailAndRefreshToken(email, refreshToken, type);
+        if (user.isPresent()) {
+            return user.get();
+
+        }
+
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User or refresh token not found");
     }
 
 }

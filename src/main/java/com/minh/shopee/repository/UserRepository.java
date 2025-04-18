@@ -5,7 +5,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.minh.shopee.models.User;
 
@@ -16,8 +19,15 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 
     Optional<User> findByEmail(String email);
 
-    <T> Optional<T> findByEmail(String email , Class<T> type);
+    <T> Optional<T> findByEmail(String email, Class<T> type);
 
     Optional<User> findByEmailAndRefreshToken(String email, String refreshToken);
+
+    <T> Optional<T> findByEmailAndRefreshToken(String email, String refreshToken, Class<T> type);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE User u SET u.refreshToken = :refreshToken WHERE u.email = :email")
+    int updateRefreshTokenByEmail(String email, String refreshToken);
 
 }
