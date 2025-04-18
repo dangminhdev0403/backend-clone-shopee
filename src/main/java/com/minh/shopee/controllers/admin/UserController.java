@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.minh.shopee.models.User;
-import com.minh.shopee.models.dto.UserDTO;
+import com.minh.shopee.models.dto.users.UserDTO;
 import com.minh.shopee.services.UserService;
 
 import lombok.RequiredArgsConstructor;

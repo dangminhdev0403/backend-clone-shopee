@@ -59,6 +59,18 @@ public class UserImpl implements UserService {
     }
 
     @Override
+    public <T> T findByUsername(String username, Class<T> type) {
+
+        Optional<T> user = this.userRepository.findByEmail(username, type);
+
+        if (user.isPresent()) {
+            return user.get();
+        } else {
+            throw new IllegalArgumentException("User not found");
+        }
+    }
+
+    @Override
     public void updateRefreshToken(String email, String refreshToken) {
         Optional<User> user = this.userRepository.findByEmail(email);
         if (user.isPresent()) {

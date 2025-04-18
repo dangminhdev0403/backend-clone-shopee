@@ -11,6 +11,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import com.minh.shopee.models.response.ResponseData;
@@ -113,6 +114,19 @@ public class GlobalExceptionHandler {
 
         log.warn("⚠️ [409 DUPLICATE DATA] Field: {} | URL: {} | Message: {}",
                 ex.getFieldName(), request.getRequestURL(), ex.getMessage());
+
+        ResponseData<Object> data = createResponseData(statusCode, error, message);
+
+        return ResponseEntity.status(statusCode).body(data);
+    }
+
+    @ExceptionHandler(value = ResponseStatusException.class)
+    public ResponseEntity<ResponseData<Object>> responseStatusException(
+            ResponseStatusException ex, HttpServletRequest request) {
+
+        int statusCode = ex.getStatusCode().value();
+        String error = ex.getStatusCode().toString();
+        String message = ex.getReason();
 
         ResponseData<Object> data = createResponseData(statusCode, error, message);
 

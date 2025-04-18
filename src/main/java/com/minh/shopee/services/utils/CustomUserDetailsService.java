@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.minh.shopee.models.User;
+import com.minh.shopee.models.dto.users.UserAuthDTO;
 import com.minh.shopee.services.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,9 +22,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User currentUser = this.userService.findByUsername(username);
-        if (currentUser == null)
-            throw new UsernameNotFoundException("User not found");
+        UserAuthDTO currentUser = this.userService.findByUsername(username, UserAuthDTO.class);
+
         return new org.springframework.security.core.userdetails.User(currentUser.getEmail(), currentUser.getPassword(),
                 Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")));
     }

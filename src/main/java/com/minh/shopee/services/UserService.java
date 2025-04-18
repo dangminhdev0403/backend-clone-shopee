@@ -12,6 +12,8 @@ public interface UserService {
 
     User findByUsername(String username);
 
+    <T> T findByUsername(String username, Class<T> type);
+
     void updateRefreshToken(String email, String refreshToken);
 
     User findByEmailAndRefreshToken(String email, String refreshToken);

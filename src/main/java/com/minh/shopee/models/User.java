@@ -16,7 +16,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Getter
 @Setter
-@Table(name = "users", indexes = { @Index(name = "email_index", columnList = "email") })
+@Table(name = "users",indexes = @Index(name ="email_idx",columnList = "email"))
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
