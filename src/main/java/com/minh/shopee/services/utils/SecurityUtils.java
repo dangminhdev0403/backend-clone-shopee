@@ -28,7 +28,10 @@ import org.springframework.stereotype.Service;
 
 import com.minh.shopee.models.dto.ResLoginDTO;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j(topic = "SecurityUtils")
 public class SecurityUtils {
     public static final MacAlgorithm MAC_ALGORITHM = MacAlgorithm.HS512;
 
@@ -68,6 +71,8 @@ public class SecurityUtils {
         Instant now = Instant.now();
         Instant validity = now.plus(expirationSeconds, ChronoUnit.SECONDS);
 
+        log.debug("Creating token for email: {}, expires at: {}", email, validity);
+
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuedAt(now)
                 .expiresAt(validity)
@@ -81,43 +86,44 @@ public class SecurityUtils {
     }
 
     public String createAccessToken(String email, ResLoginDTO.UserLogin resLoginDTO) {
+        log.info("Generating Access Token for {}", email);
         return createToken(email, resLoginDTO, accessTokenExpiration, accessTokenEncoder);
     }
 
     public String createRefreshToken(String email, ResLoginDTO resLoginDTO) {
+        log.info("Generating Refresh Token for {}", email);
         return createToken(email, resLoginDTO.getUser(), refreshTokenExpiration, refreshTokenEncoder);
     }
 
     public Jwt validateAccessToken(String token) {
+        log.debug("Validating Access Token...");
         NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withSecretKey(getAccessTokenSecretKey())
                 .macAlgorithm(MAC_ALGORITHM).build();
         try {
             return jwtDecoder.decode(token);
         } catch (Exception e) {
+            log.error("Access Token validation failed: {}", e.getMessage());
             throw new IllegalArgumentException("Invalid access token", e);
         }
     }
 
     public Jwt checkValidRefreshToken(String token) {
+        log.debug("Validating Refresh Token...");
         NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withSecretKey(getRefreshTokenSecretKey())
                 .macAlgorithm(MAC_ALGORITHM).build();
         try {
             return jwtDecoder.decode(token);
         } catch (Exception e) {
+            log.error("Refresh Token validation failed: {}", e.getMessage());
             throw new IllegalArgumentException("Invalid refresh token", e);
         }
     }
 
-    // Các hàm tiện ích khác giữ nguyên...
-
-    /**
-     * Get the login of the current user.
-     *
-     * @return the login of the current user.
-     */
     public static Optional<String> getCurrentUserLogin() {
-        SecurityContext securityContext = SecurityContextHolder.getContext();
-        return Optional.ofNullable(extractPrincipal(securityContext.getAuthentication()));
+        SecurityContext context = SecurityContextHolder.getContext();
+        String user = extractPrincipal(context.getAuthentication());
+        log.debug("Current user login: {}", user);
+        return Optional.ofNullable(user);
     }
 
     private static String extractPrincipal(Authentication authentication) {
@@ -133,65 +139,37 @@ public class SecurityUtils {
         return null;
     }
 
-    /**
-     * Get the JWT of the current user.
-     *
-     * @return the JWT of the current user.
-     */
     public static Optional<String> getCurrentUserJWT() {
-        SecurityContext securityContext = SecurityContextHolder.getContext();
-        return Optional.ofNullable(securityContext.getAuthentication())
-                .filter(authentication -> authentication.getCredentials() instanceof String)
-                .map(authentication -> (String) authentication.getCredentials());
+        SecurityContext context = SecurityContextHolder.getContext();
+        return Optional.ofNullable(context.getAuthentication())
+                .filter(auth -> auth.getCredentials() instanceof String)
+                .map(auth -> {
+                    log.debug("Current JWT: {}", auth.getCredentials());
+                    return (String) auth.getCredentials();
+                });
     }
 
-    /**
-     * Check if a user is authenticated.
-     *
-     * @return true if the user is authenticated, false otherwise.
-     */
-    // public static boolean isAuthenticated() {
-    // Authentication authentication =
-    // SecurityContextHolder.getContext().getAuthentication();
-    // return authentication != null
-    // &&
-    // getAuthorities(authentication).noneMatch(AuthoritiesConstants.ANONYMOUS::equals);
-    // }
-
-    /**
-     * Checks if the current user has any of the authorities.
-     *
-     * @param authorities the authorities to check.
-     * @return true if the current user has any of the authorities, false otherwise.
-     */
     public static boolean hasCurrentUserAnyOfAuthorities(String... authorities) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return (authentication != null && getAuthorities(authentication)
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        boolean result = (auth != null && getAuthorities(auth)
                 .anyMatch(authority -> Arrays.asList(authorities).contains(authority)));
+        log.debug("User has any of authorities {}: {}", Arrays.toString(authorities), result);
+        return result;
     }
 
-    /**
-     * Checks if the current user has none of the authorities.
-     *
-     * @param authorities the authorities to check.
-     * @return true if the current user has none of the authorities, false
-     *         otherwise.
-     */
     public static boolean hasCurrentUserNoneOfAuthorities(String... authorities) {
-        return !hasCurrentUserAnyOfAuthorities(authorities);
+        boolean result = !hasCurrentUserAnyOfAuthorities(authorities);
+        log.debug("User has none of authorities {}: {}", Arrays.toString(authorities), result);
+        return result;
     }
 
-    /**
-     * Checks if the current user has a specific authority.
-     *
-     * @param authority the authority to check.
-     * @return true if the current user has the authority, false otherwise.
-     */
     public static boolean hasCurrentUserThisAuthority(String authority) {
-        return hasCurrentUserAnyOfAuthorities(authority);
+        boolean result = hasCurrentUserAnyOfAuthorities(authority);
+        log.debug("User has authority [{}]: {}", authority, result);
+        return result;
     }
 
-    private static Stream<String> getAuthorities(Authentication authentication) {
-        return authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority);
+    private static Stream<String> getAuthorities(Authentication auth) {
+        return auth.getAuthorities().stream().map(GrantedAuthority::getAuthority);
     }
 }

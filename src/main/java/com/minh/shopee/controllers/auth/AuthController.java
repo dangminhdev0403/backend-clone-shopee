@@ -34,20 +34,21 @@ import com.minh.shopee.services.utils.SecurityUtils;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
+@Slf4j(topic = "AuthController")
 public class AuthController {
     private final UserService userService;
     private final SecurityUtils securityUtils;
-
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
+
     private static final String REFRESH_TOKEN = "refresh_token";
     private static final String HEADER_NAME = "Set-Cookie";
 
     private Map<String, Instant> refreshTokensRequestTime = new ConcurrentHashMap<>();
-
     private Duration refreshTokenAccessRequestExpiration = Duration.ofSeconds(3);
 
     @Value("${minh.jwt.refresh-token.validity.in.seconds}")
@@ -56,10 +57,13 @@ public class AuthController {
     @PostMapping("/login")
     @ApiDescription("API Login")
     public ResponseEntity<ResLoginDTO> login(@RequestBody @Valid LoginRequest userRequest) {
+        log.info("Login request received for email: {}", userRequest.getEmail());
+
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 userRequest.getEmail(), userRequest.getPassword());
 
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        log.debug("Authentication successful for email: {}", userRequest.getEmail());
 
         UserDTO currentUser = this.userService.findByUsername(userRequest.getEmail(), UserDTO.class);
 
@@ -67,25 +71,26 @@ public class AuthController {
         String name = currentUser.getName();
         ResLoginDTO.UserLogin userLogin = ResLoginDTO.UserLogin.builder().email(email).name(name).build();
 
-        // Tạo accessToken token
         String accessToken = this.securityUtils.createAccessToken(userRequest.getEmail(), userLogin);
+        log.debug("Access token generated for user: {}", email);
+
         ResLoginDTO resLoginDTO = ResLoginDTO.builder().accessToken(accessToken).user(userLogin).build();
 
-        // ! Nạp thông tin hoi vào SecurityContextHolder
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        // ! Tạo refresh_token
         String refreshToken = this.securityUtils.createRefreshToken(userRequest.getEmail(), resLoginDTO);
         this.userService.updateRefreshToken(userRequest.getEmail(), refreshToken);
-        // ! Lưu refreshToken với cookie
+        log.debug("Refresh token generated and saved for user: {}", email);
+
         ResponseCookie cookie = ResponseCookie.from(
                 REFRESH_TOKEN,
                 refreshToken)
                 .httpOnly(true)
                 .path("/")
                 .maxAge(refreshTokenExpiration).build();
-        return ResponseEntity.ok().header(HEADER_NAME, cookie.toString()).body(resLoginDTO);
 
+        log.info("Login successful for email: {}", email);
+        return ResponseEntity.ok().header(HEADER_NAME, cookie.toString()).body(resLoginDTO);
     }
 
     @GetMapping("/refresh")
@@ -93,32 +98,32 @@ public class AuthController {
     public ResponseEntity<ResLoginDTO> refreshToken(
             @CookieValue(name = "refresh_token", required = false) Optional<String> refreshToken) {
 
+        log.info("Refresh token request received");
+
         if (refreshToken.isEmpty()) {
+            log.warn("Refresh token not found in request");
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Refresh token not found");
         }
 
-        String newRefreshToken = refreshToken.get();
-        // ! chống spam
-        // ? lấy thời gian gọi request
-        Instant lastRequestTime = this.refreshTokensRequestTime.get(refreshToken.get());
-        if (lastRequestTime != null
-                && Instant.now().isBefore(lastRequestTime.plus(refreshTokenAccessRequestExpiration))) {
-            throw new ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS, "Quá nhiều lần gọi request");
+        String tokenValue = refreshToken.get();
+        Instant lastRequestTime = this.refreshTokensRequestTime.get(tokenValue);
 
+        if (lastRequestTime != null &&
+                Instant.now().isBefore(lastRequestTime.plus(refreshTokenAccessRequestExpiration))) {
+            log.warn("Too many refresh token requests in short time for token: {}", tokenValue);
+            throw new ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS, "Quá nhiều lần gọi request");
         }
 
-        this.refreshTokensRequestTime.put(refreshToken.get(), Instant.now());
+        this.refreshTokensRequestTime.put(tokenValue, Instant.now());
 
-        Jwt decodedToken = this.securityUtils.checkValidRefreshToken(refreshToken.get()); // ! Token được giải
-
+        Jwt decodedToken = this.securityUtils.checkValidRefreshToken(tokenValue);
         String email = decodedToken.getSubject();
+        log.debug("Refresh token validated for user: {}", email);
 
-        // ! Tìm User chứa refresh token tương ứng trong database
-        UserDTO currentUser = this.userService.findByEmailAndRefreshToken(email, refreshToken.get(), UserDTO.class);
+        UserDTO currentUser = this.userService.findByEmailAndRefreshToken(email, tokenValue, UserDTO.class);
 
-        // ! Tạo access_token
-        ResLoginDTO.UserLogin userLogin = ResLoginDTO.UserLogin.builder().email(email).name(currentUser.getName())
-                .build();
+        ResLoginDTO.UserLogin userLogin = ResLoginDTO.UserLogin.builder()
+                .email(email).name(currentUser.getName()).build();
         String accessToken = this.securityUtils.createAccessToken(email, userLogin);
         ResLoginDTO resLoginDTO = ResLoginDTO.builder().user(userLogin).accessToken(accessToken).build();
 
@@ -126,20 +131,20 @@ public class AuthController {
         Instant now = Instant.now();
         Instant beforeexpiresAt = now.plus(5, ChronoUnit.MINUTES);
 
-        // ! kiểm tra refresh token hết hạn hay chưa rồi mới tạo refresh token
         if (expiresAt != null && beforeexpiresAt.isAfter(expiresAt)) {
-
-            newRefreshToken = this.securityUtils.createRefreshToken(email, resLoginDTO);
-
-            this.userService.updateRefreshToken(email, newRefreshToken);
+            log.info("Refresh token is nearing expiry, generating new one for user: {}", email);
+            tokenValue = this.securityUtils.createRefreshToken(email, resLoginDTO);
+            this.userService.updateRefreshToken(email, tokenValue);
         }
 
         ResponseCookie cookie = ResponseCookie.from(
                 REFRESH_TOKEN,
-                newRefreshToken)
+                tokenValue)
                 .httpOnly(true)
                 .path("/")
                 .maxAge(refreshTokenExpiration).build();
+
+        log.info("Access token refreshed successfully for user: {}", email);
         return ResponseEntity.ok().header(HEADER_NAME, cookie.toString()).body(resLoginDTO);
     }
 
@@ -148,20 +153,19 @@ public class AuthController {
     public ResponseEntity<String> logout(
             @CookieValue(name = REFRESH_TOKEN, required = false) Optional<String> refreshToken) {
 
+        log.info("Logout request received");
+
         if (refreshToken.isEmpty()) {
-
+            log.warn("No refresh token found during logout");
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Không tìm thấy refresh token");
-
         }
 
-        // ! Kiem tra refresh token
-        Jwt decodedToken = this.securityUtils.checkValidRefreshToken(refreshToken.get()); // ! Token được giải
-
+        Jwt decodedToken = this.securityUtils.checkValidRefreshToken(refreshToken.get());
         String email = decodedToken.getSubject();
-
-        // ! Tìm refresh token trong database
+        log.debug("Refresh token validated during logout for user: {}", email);
 
         this.userService.updateRefreshToken(email, null);
+        log.info("Refresh token cleared from database for user: {}", email);
 
         ResponseCookie cookie = ResponseCookie.from(
                 REFRESH_TOKEN,
@@ -170,36 +174,34 @@ public class AuthController {
                 .path("/")
                 .maxAge(refreshTokenExpiration).build();
 
+        log.info("User logged out successfully: {}", email);
         return ResponseEntity.ok().header(HEADER_NAME, cookie.toString()).body("Đăng xuất thành công");
-
     }
 
     @PostMapping("/register")
     @ApiDescription("API Register")
     public ResponseEntity<ResLoginDTO> register(@RequestBody @Valid User userRequest) {
+        log.info("Register request received for email: {}", userRequest.getEmail());
 
         User createUser = this.userService.createUser(userRequest);
-
         String email = createUser.getEmail();
         String name = createUser.getName();
-        ResLoginDTO.UserLogin userLogin = ResLoginDTO.UserLogin.builder().email(email).name(name).build();
 
-        // Tạo accessToken token
-        String accessToken = this.securityUtils.createAccessToken(userRequest.getEmail(), userLogin);
+        ResLoginDTO.UserLogin userLogin = ResLoginDTO.UserLogin.builder().email(email).name(name).build();
+        String accessToken = this.securityUtils.createAccessToken(email, userLogin);
         ResLoginDTO resLoginDTO = ResLoginDTO.builder().accessToken(accessToken).user(userLogin).build();
 
-        // ! Tạo refresh_token
-        String refreshToken = this.securityUtils.createRefreshToken(userRequest.getEmail(), resLoginDTO);
-        this.userService.updateRefreshToken(userRequest.getEmail(), refreshToken);
-        // ! Lưu refreshToken với cookie
+        String refreshToken = this.securityUtils.createRefreshToken(email, resLoginDTO);
+        this.userService.updateRefreshToken(email, refreshToken);
+        log.info("User registered successfully: {}", email);
+
         ResponseCookie cookie = ResponseCookie.from(
                 REFRESH_TOKEN,
                 refreshToken)
                 .httpOnly(true)
                 .path("/")
                 .maxAge(refreshTokenExpiration).build();
+
         return ResponseEntity.ok().header(HEADER_NAME, cookie.toString()).body(resLoginDTO);
-
     }
-
 }
