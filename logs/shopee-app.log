@@ -407,3 +407,74 @@ Caused by: com.nimbusds.jose.proc.BadJWSException: Signed JWT rejected: Invalid 
 2025-04-25 15:42:06 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
 2025-04-25 15:42:06 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
 2025-04-25 15:42:09 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.217 seconds (process running for 2695.208)
+2025-04-25 15:51:31 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 15:51:31 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 15:51:31 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 15:51:34 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.824 seconds (process running for 3260.105)
+2025-04-25 15:53:43 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 15:53:43 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 15:53:43 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 15:53:44 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 1.828 seconds (process running for 3391.023)
+2025-04-25 15:55:40 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 15:55:40 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 15:55:40 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 15:55:42 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 1.876 seconds (process running for 3508.71)
+2025-04-25 15:56:07 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 15:56:07 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 15:56:07 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 15:56:09 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 1.816 seconds (process running for 3535.735)
+2025-04-25 15:57:38 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 15:57:38 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 15:57:38 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 15:57:41 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 3.462 seconds (process running for 3628.028)
+2025-04-25 15:57:44 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 15:57:44 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 15:57:44 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 15:57:46 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.53 seconds (process running for 3632.902)
+2025-04-25 15:57:53 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 15:57:53 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 15:57:53 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 15:57:55 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.001 seconds (process running for 3641.618)
+2025-04-25 15:58:02 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 15:58:02 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 15:58:02 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 15:58:06 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 4.207 seconds (process running for 3652.545)
+2025-04-25 15:58:12 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 15:58:12 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 15:58:12 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 15:58:14 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.351 seconds (process running for 3660.835)
+2025-04-25 16:02:41 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 16:02:41 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 16:02:41 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 16:02:43 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.299 seconds (process running for 3930.019)
+2025-04-25 16:02:52 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 16:02:52 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 16:02:52 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 16:02:54 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 1.877 seconds (process running for 3940.392)
+2025-04-25 16:02:55 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 16:02:55 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 16:02:55 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 16:02:58 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.093 seconds (process running for 3944.064)
+2025-04-25 16:03:06 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 16:03:06 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 16:03:06 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 16:03:07 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 1.642 seconds (process running for 3953.805)
+2025-04-25 16:03:18 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 16:03:18 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 16:03:18 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 16:03:23 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 4.615 seconds (process running for 3969.144)
+2025-04-25 16:03:24 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 16:03:24 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 16:03:24 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 16:03:26 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.096 seconds (process running for 3972.649)
+2025-04-25 16:03:28 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 16:03:28 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 16:03:28 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 16:03:30 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.314 seconds (process running for 3976.395)
+2025-04-25 16:03:31 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 16:03:31 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 16:03:31 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 16:03:35 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 3.814 seconds (process running for 3981.65)
+2025-04-25 16:03:37 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 16:03:37 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 16:03:37 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"

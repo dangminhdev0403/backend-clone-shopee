@@ -33,65 +33,48 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Throwable.class)
     public ResponseEntity<ResponseData<Object>> handleAllExceptions(Throwable ex, HttpServletRequest request) {
-        Class<?> clazz = ex.getClass();
         int statusCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
-        String error = "Lỗi chưa xử lí: " + ex.getClass().getSimpleName();
+        String error = "Lỗi chưa xử lí";
         Object message = ex.getMessage();
 
-        if (MethodArgumentNotValidException.class.isAssignableFrom(clazz)) {
-            MethodArgumentNotValidException e = (MethodArgumentNotValidException) ex;
+        if (ex instanceof MethodArgumentNotValidException e) {
             statusCode = HttpStatus.BAD_REQUEST.value();
             error = "Lỗi validation";
             message = extractFieldErrors(e.getBindingResult());
             log.warn("⚠️ [400 VALIDATION ERROR]   Message: {}", message);
-        }
-
-        else if (NoResourceFoundException.class.isAssignableFrom(clazz)) {
+        } else if (ex instanceof NoResourceFoundException) {
             statusCode = HttpStatus.NOT_FOUND.value();
             error = "Endpoint không tồn tại";
             message = "URL " + request.getRequestURL() + " không tồn tại";
             log.warn("⚠️ [404 NOT FOUND] URL: {} | Message: {}", request.getRequestURL(), ex.getMessage());
-        }
-
-        else if (HttpRequestMethodNotSupportedException.class.isAssignableFrom(clazz)) {
+        } else if (ex instanceof HttpRequestMethodNotSupportedException) {
             statusCode = HttpStatus.METHOD_NOT_ALLOWED.value();
             error = "Method không hỗ trợ";
             message = "Phương thức " + request.getMethod() + " không hỗ trợ";
             log.warn("⚠️ [405 NOT ALLOWED] Method: {} | URL: {}", request.getMethod(), request.getRequestURL());
-        }
-
-        else if (DuplicateException.class.isAssignableFrom(clazz)) {
-            DuplicateException e = (DuplicateException) ex;
+        } else if (ex instanceof DuplicateException e) {
             statusCode = HttpStatus.CONFLICT.value();
             error = "Trùng dữ liệu";
-            message = String.format("%s %s", e.getFieldName(), e.getMessage());
-            log.warn("⚠️ [409 DUPLICATE DATA] Field: {} | URL: {} | Message: {}",
-                    e.getFieldName(), request.getRequestURL(), e.getMessage());
-        }
-
-        else if (ResponseStatusException.class.isAssignableFrom(clazz)) {
-            ResponseStatusException e = (ResponseStatusException) ex;
+            message = String.format("%s %s", e.getFieldName(), ex.getMessage());
+            log.warn("⚠️ [409 DUPLICATE DATA] Field: {} | URL: {} | Message: {}", e.getFieldName(),
+                    request.getRequestURL(), ex.getMessage());
+        } else if (ex instanceof ResponseStatusException e) {
             statusCode = e.getStatusCode().value();
             error = e.getStatusCode().toString();
             message = e.getReason();
-        }
-
-        else if (BadCredentialsException.class.isAssignableFrom(clazz)) {
+        } else if (ex instanceof BadCredentialsException) {
             statusCode = HttpStatus.UNAUTHORIZED.value();
             error = "Lỗi xác thực";
             message = "Thông tin đăng nhập không chính xác";
             log.warn("⚠️ [401 BadCredentialsException] URL: {} | Message: {}", request.getRequestURL(),
                     ex.getMessage());
-        } else if (AppException.class.isAssignableFrom(clazz)) {
-            AppException e = (AppException) ex;
+        } else if (ex instanceof AppException e) {
+
             statusCode = e.getStatus();
             error = e.getError();
             message = e.getMessage();
 
-        }
-
-        else {
-
+        } else {
             log.error("❌ [COMMON EXCEPTION] URL: {} | Message: {}", request.getRequestURL(), ex.getMessage(), ex);
         }
 
