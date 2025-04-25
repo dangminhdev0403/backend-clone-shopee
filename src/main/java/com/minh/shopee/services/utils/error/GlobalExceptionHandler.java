@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -31,106 +31,78 @@ public class GlobalExceptionHandler {
                 .build();
     }
 
-    // ❌ Exception chung chung
-    @ExceptionHandler(value = Exception.class)
-    public ResponseEntity<ResponseData<Object>> commonException(Exception ex, HttpServletRequest request) {
+    @ExceptionHandler(value = Throwable.class)
+    public ResponseEntity<ResponseData<Object>> handleAllExceptions(Throwable ex, HttpServletRequest request) {
+        Class<?> clazz = ex.getClass();
         int statusCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
-        String error = "Lỗi hệ thống";
+        String error = "Lỗi chưa xử lí: " + ex.getClass().getSimpleName();
+        Object message = ex.getMessage();
 
-        // 📌 Log thêm URL gây lỗi và exception stacktrace
-        log.error("❌ [COMMON EXCEPTION] URL: {} | Message: {}",
-                request.getRequestURL(), ex.getMessage(), ex);
+        if (MethodArgumentNotValidException.class.isAssignableFrom(clazz)) {
+            MethodArgumentNotValidException e = (MethodArgumentNotValidException) ex;
+            statusCode = HttpStatus.BAD_REQUEST.value();
+            error = "Lỗi validation";
+            message = extractFieldErrors(e.getBindingResult());
+            log.warn("⚠️ [400 VALIDATION ERROR]   Message: {}", message);
+        }
 
-        ResponseData<Object> data = createResponseData(statusCode, error, ex);
+        else if (NoResourceFoundException.class.isAssignableFrom(clazz)) {
+            statusCode = HttpStatus.NOT_FOUND.value();
+            error = "Endpoint không tồn tại";
+            message = "URL " + request.getRequestURL() + " không tồn tại";
+            log.warn("⚠️ [404 NOT FOUND] URL: {} | Message: {}", request.getRequestURL(), ex.getMessage());
+        }
 
-        return ResponseEntity.status(statusCode).body(data);
+        else if (HttpRequestMethodNotSupportedException.class.isAssignableFrom(clazz)) {
+            statusCode = HttpStatus.METHOD_NOT_ALLOWED.value();
+            error = "Method không hỗ trợ";
+            message = "Phương thức " + request.getMethod() + " không hỗ trợ";
+            log.warn("⚠️ [405 NOT ALLOWED] Method: {} | URL: {}", request.getMethod(), request.getRequestURL());
+        }
+
+        else if (DuplicateException.class.isAssignableFrom(clazz)) {
+            DuplicateException e = (DuplicateException) ex;
+            statusCode = HttpStatus.CONFLICT.value();
+            error = "Trùng dữ liệu";
+            message = String.format("%s %s", e.getFieldName(), e.getMessage());
+            log.warn("⚠️ [409 DUPLICATE DATA] Field: {} | URL: {} | Message: {}",
+                    e.getFieldName(), request.getRequestURL(), e.getMessage());
+        }
+
+        else if (ResponseStatusException.class.isAssignableFrom(clazz)) {
+            ResponseStatusException e = (ResponseStatusException) ex;
+            statusCode = e.getStatusCode().value();
+            error = e.getStatusCode().toString();
+            message = e.getReason();
+        }
+
+        else if (BadCredentialsException.class.isAssignableFrom(clazz)) {
+            statusCode = HttpStatus.UNAUTHORIZED.value();
+            error = "Lỗi xác thực";
+            message = "Thông tin đăng nhập không chính xác";
+            log.warn("⚠️ [401 BadCredentialsException] URL: {} | Message: {}", request.getRequestURL(),
+                    ex.getMessage());
+        } else if (AppException.class.isAssignableFrom(clazz)) {
+            AppException e = (AppException) ex;
+            statusCode = e.getStatus();
+            error = e.getError();
+            message = e.getMessage();
+
+        }
+
+        else {
+
+            log.error("❌ [COMMON EXCEPTION] URL: {} | Message: {}", request.getRequestURL(), ex.getMessage(), ex);
+        }
+
+        ResponseData<Object> response = createResponseData(statusCode, error, message);
+        return ResponseEntity.status(statusCode).body(response);
     }
 
-    // ❌ Không tìm thấy endpoint
-    @ExceptionHandler(value = NoResourceFoundException.class)
-    public ResponseEntity<ResponseData<Object>> noResourceFoundException(NoResourceFoundException ex,
-            HttpServletRequest request) {
-
-        int statusCode = HttpStatus.NOT_FOUND.value(); // nên là 404 thay vì 500
-        String error = "Endpoint không tồn tại";
-        String url = request.getRequestURL().toString();
-        String message = "URL " + url + " không tồn tại";
-
-        // 📌 Log rõ lý do 404
-        log.warn("⚠️ [404 NOT FOUND] URL: {} | Message: {}", url, ex.getMessage());
-
-        ResponseData<Object> data = createResponseData(statusCode, error, message);
-
-        return ResponseEntity.status(statusCode).body(data);
+    private List<Map<String, String>> extractFieldErrors(BindingResult result) {
+        return result.getFieldErrors()
+                .stream()
+                .map(fieldError -> Map.of(fieldError.getField(), fieldError.getDefaultMessage()))
+                .toList();
     }
-
-    // ❌ Không chấp nhận phương thức
-    @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<ResponseData<Object>> httpRequestMethodNotSupportedException(
-            HttpRequestMethodNotSupportedException ex,
-            HttpServletRequest request) {
-
-        int statusCode = HttpStatus.METHOD_NOT_ALLOWED.value(); // nên là 404 thay vì 500
-        String error = "Method không hỗ trợ";
-        String requestMethod = request.getMethod();
-        String message = "Phương thức " + requestMethod + " không hỗ trợ";
-
-        // 📌 Log rõ lý do 404
-        log.warn("⚠️ [405 NOT ALLOWED] URL: {} | Message: {}", requestMethod, ex.getMessage());
-
-        ResponseData<Object> data = createResponseData(statusCode, error, message);
-
-        return ResponseEntity.status(statusCode).body(data);
-    }
-
-    // ❌ lỗi validation
-    @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public ResponseEntity<ResponseData<Object>> methodArgumentNotValidException(
-            MethodArgumentNotValidException ex) {
-
-        int statusCode = HttpStatus.BAD_REQUEST.value();
-        String error = "Lỗi validation";
-        BindingResult result = ex.getBindingResult();
-
-        List<FieldError> fieldErrors = result.getFieldErrors();
-
-        List<Map<String, String>> message = fieldErrors.stream()
-                .map(fieldError -> Map.of(fieldError.getField(), fieldError.getDefaultMessage())).toList();
-        // 📌 Log rõ lý do 404
-        log.warn("⚠️ [400 VALIDATION ERROR]   Message: {}", message);
-
-        ResponseData<Object> data = createResponseData(statusCode, error, message);
-
-        return ResponseEntity.status(statusCode).body(data);
-    }
-
-    @ExceptionHandler(value = DuplicateException.class)
-    public ResponseEntity<ResponseData<Object>> handleDuplicateException(
-            DuplicateException ex, HttpServletRequest request) {
-
-        int statusCode = HttpStatus.CONFLICT.value(); // 409
-        String error = "Trùng dữ liệu";
-        String message = String.format("%s %s", ex.getFieldName(), ex.getMessage());
-
-        log.warn("⚠️ [409 DUPLICATE DATA] Field: {} | URL: {} | Message: {}",
-                ex.getFieldName(), request.getRequestURL(), ex.getMessage());
-
-        ResponseData<Object> data = createResponseData(statusCode, error, message);
-
-        return ResponseEntity.status(statusCode).body(data);
-    }
-
-    @ExceptionHandler(value = ResponseStatusException.class)
-    public ResponseEntity<ResponseData<Object>> responseStatusException(
-            ResponseStatusException ex, HttpServletRequest request) {
-
-        int statusCode = ex.getStatusCode().value();
-        String error = ex.getStatusCode().toString();
-        String message = ex.getReason();
-
-        ResponseData<Object> data = createResponseData(statusCode, error, message);
-
-        return ResponseEntity.status(statusCode).body(data);
-    }
-
 }
