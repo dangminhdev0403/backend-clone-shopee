@@ -15,9 +15,10 @@ public class SercurityConfiguration {
                         CustomAuthenticationEntryPoint customAuthenticationEntryPoint)
                         throws Exception {
 
-                String whileTrue[] = { "/auth/**" };
+                String[] whileTrue = { "/auth/**", "/" };
                 http
                                 .csrf(c -> c.disable())
+                                .cors(Customizer.withDefaults())
                                 .authorizeHttpRequests(authz ->
                                 // prettier-ignore
 

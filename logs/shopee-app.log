@@ -1,4 +1,269 @@
-2025-04-19 18:51:01 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 21.0.5 with PID 3216 (C:\Users\abcxy\OneDrive\Desktop\workspace\backend\shopee_javaspring\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\backend\shopee_javaspring)
-2025-04-19 18:51:01 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
-2025-04-19 18:51:01 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
-2025-04-19 18:51:09 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 8.595 seconds (process running for 9.389)
+2025-04-25 14:16:43 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 2216 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:16:43 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:16:43 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:18:46 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 7260 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:18:46 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:18:46 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:20:49 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 9204 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:20:49 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:20:49 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:22:28 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 10428 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:22:28 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:22:28 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:25:41 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 10648 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:25:41 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:25:41 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:26:28 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 936 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:26:28 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:26:28 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:27:16 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 3260 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:27:16 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:27:16 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:29:07 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 9376 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:29:07 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:29:07 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:29:22 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 16.355 seconds (process running for 17.281)
+2025-04-25 14:31:36 ERROR c.m.shopee.config.JWTConfiguration - JWT Decode Error: An error occurred while attempting to decode the Jwt: Signed JWT rejected: Invalid signature
+org.springframework.security.oauth2.jwt.BadJwtException: An error occurred while attempting to decode the Jwt: Signed JWT rejected: Invalid signature
+	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.createJwt(NimbusJwtDecoder.java:184)
+	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.decode(NimbusJwtDecoder.java:138)
+	at com.minh.shopee.config.JWTConfiguration.lambda$0(JWTConfiguration.java:64)
+	at org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider.getJwt(JwtAuthenticationProvider.java:99)
+	at org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider.authenticate(JwtAuthenticationProvider.java:88)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:182)
+	at org.springframework.security.authentication.ObservationAuthenticationManager.lambda$authenticate$1(ObservationAuthenticationManager.java:54)
+	at io.micrometer.observation.Observation.observe(Observation.java:564)
+	at org.springframework.security.authentication.ObservationAuthenticationManager.authenticate(ObservationAuthenticationManager.java:53)
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:137)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Caused by: com.nimbusds.jose.proc.BadJWSException: Signed JWT rejected: Invalid signature
+	at com.nimbusds.jwt.proc.DefaultJWTProcessor.process(DefaultJWTProcessor.java:378)
+	at com.nimbusds.jwt.proc.DefaultJWTProcessor.process(DefaultJWTProcessor.java:303)
+	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.createJwt(NimbusJwtDecoder.java:158)
+	... 83 common frames omitted
+2025-04-25 14:43:08 ERROR c.m.shopee.config.JWTConfiguration - JWT Decode Error: An error occurred while attempting to decode the Jwt: Signed JWT rejected: Invalid signature
+org.springframework.security.oauth2.jwt.BadJwtException: An error occurred while attempting to decode the Jwt: Signed JWT rejected: Invalid signature
+	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.createJwt(NimbusJwtDecoder.java:184)
+	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.decode(NimbusJwtDecoder.java:138)
+	at com.minh.shopee.config.JWTConfiguration.lambda$0(JWTConfiguration.java:64)
+	at org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider.getJwt(JwtAuthenticationProvider.java:99)
+	at org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider.authenticate(JwtAuthenticationProvider.java:88)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:182)
+	at org.springframework.security.authentication.ObservationAuthenticationManager.lambda$authenticate$1(ObservationAuthenticationManager.java:54)
+	at io.micrometer.observation.Observation.observe(Observation.java:564)
+	at org.springframework.security.authentication.ObservationAuthenticationManager.authenticate(ObservationAuthenticationManager.java:53)
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:137)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Caused by: com.nimbusds.jose.proc.BadJWSException: Signed JWT rejected: Invalid signature
+	at com.nimbusds.jwt.proc.DefaultJWTProcessor.process(DefaultJWTProcessor.java:378)
+	at com.nimbusds.jwt.proc.DefaultJWTProcessor.process(DefaultJWTProcessor.java:303)
+	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.createJwt(NimbusJwtDecoder.java:158)
+	... 83 common frames omitted
+2025-04-25 14:46:07 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 9376 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:46:07 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:46:07 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:46:30 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 23.039 seconds (process running for 1045.1)
+2025-04-25 14:46:32 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 9376 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:46:32 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:46:32 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:46:37 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 5.315 seconds (process running for 1051.844)
+2025-04-25 14:46:38 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 9376 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:46:38 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:46:38 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:46:41 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.976 seconds (process running for 1056.159)
+2025-04-25 14:47:48 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 9376 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:47:48 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:47:48 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:48:07 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 9376 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:48:07 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:48:07 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:48:10 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 3.151 seconds (process running for 1144.579)
+2025-04-25 14:48:28 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 9376 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:48:28 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:48:28 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:48:32 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 3.214 seconds (process running for 1166.493)
+2025-04-25 14:49:13 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 9376 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:49:13 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:49:13 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:49:53 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 9376 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:49:53 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:49:53 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:50:17 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 9376 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:50:17 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:50:17 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:51:33 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 9376 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:51:33 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:51:33 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:52:30 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 9376 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:52:30 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:52:30 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:57:16 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:57:16 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:57:16 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:57:35 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 20.552 seconds (process running for 21.518)
+2025-04-25 14:58:08 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:58:08 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:58:08 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:58:13 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 5.1 seconds (process running for 59.39)
+2025-04-25 14:58:40 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:58:40 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:58:40 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:58:44 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 3.818 seconds (process running for 90.102)
+2025-04-25 14:59:33 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:59:33 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:59:33 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:59:41 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 8.427 seconds (process running for 147.272)
+2025-04-25 14:59:42 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:59:42 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:59:42 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:59:45 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.94 seconds (process running for 151.56)
+2025-04-25 14:59:52 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.11 with PID 12208 (C:\Users\OWNER\Desktop\workspace\backend-clone-shopee\target\classes started by OWNER in C:\Users\OWNER\Desktop\workspace\backend-clone-shopee)
+2025-04-25 14:59:52 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-04-25 14:59:52 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-25 14:59:55 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 3.246 seconds (process running for 161.384)

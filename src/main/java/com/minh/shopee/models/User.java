@@ -1,10 +1,11 @@
 package com.minh.shopee.models;
 
+
+
 import com.minh.shopee.models.base.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Getter
 @Setter
-@Table(name = "users",indexes = @Index(name ="email_idx",columnList = "email"))
+@Table(name = "users")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
