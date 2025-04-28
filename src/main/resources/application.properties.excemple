@@ -16,3 +16,12 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 spring.jpa.hibernate.ddl-auto=update
 
+
+minh.jwt.access-token.validity.in.seconds=3600
+minh.jwt.refresh-token.validity.in.seconds=604800
+
+
+minh.jwt.base64.secret.refresh=hxd9VMgxBcNfQaxRp+cqsPNWobWR+ZGC5HjN7daezaZLooCp8xBanW+siQ12wGkGscH+a3iHVfbds21jt/qtkA==
+minh.jwt.base64.secret=hxd9VMgxBcNfQaxRp+cqsPNWobWR+ZGC5HjN7daezaZLooCp8xBanW+siQ12wGkGscH+a3iHVfbds21jt/qtkA==
+
+URL_FONTENT=http://localhost:5173
