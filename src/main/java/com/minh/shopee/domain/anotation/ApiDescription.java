@@ -1,4 +1,4 @@
-package com.minh.shopee.models.anotation;
+package com.minh.shopee.domain.anotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

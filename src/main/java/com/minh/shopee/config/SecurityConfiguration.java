@@ -1,5 +1,7 @@
 package com.minh.shopee.config;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -8,22 +10,26 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class SercurityConfiguration {
+public class SecurityConfiguration {
 
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity http,
                         CustomAuthenticationEntryPoint customAuthenticationEntryPoint)
                         throws Exception {
+                String apiPrefix = "/api/v1";
+                String[] publicPaths = { "/auth/**", "/categories/**" };
 
-                String[] whileTrue = { "/auth/**", "/" };
+                String[] whiteList = Arrays.stream(publicPaths)
+                                .map(path -> path.equals("/") ? path : apiPrefix + path)
+                                .toArray(String[]::new);
+
                 http
                                 .csrf(c -> c.disable())
                                 .cors(Customizer.withDefaults())
                                 .authorizeHttpRequests(authz ->
                                 // prettier-ignore
-
-                                authz
-                                                .requestMatchers(whileTrue).permitAll()
+                                authz.requestMatchers(whiteList)
+                                                .permitAll()
                                                 .anyRequest().authenticated()
 
                                 )

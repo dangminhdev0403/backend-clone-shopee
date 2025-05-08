@@ -11,45 +11,68 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-import com.minh.shopee.models.anotation.ApiDescription;
-import com.minh.shopee.models.response.ResponseData;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.minh.shopee.domain.anotation.ApiDescription;
+import com.minh.shopee.domain.response.ResponseData;
 
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @SuppressWarnings("rawtypes")
 @RestControllerAdvice
 @Slf4j(topic = "FormatResponse")
-public class FormatResponse implements ResponseBodyAdvice {
+@RequiredArgsConstructor
+public class FormatResponse implements ResponseBodyAdvice<Object> {
+
+    private final ObjectMapper objectMapper;
 
     @Override
-    public boolean supports(@SuppressWarnings("null") MethodParameter returnType,
-            @SuppressWarnings("null") Class converterType) {
+    public boolean supports(MethodParameter returnType, Class converterType) {
         return true;
     }
 
-    @SuppressWarnings("null")
     @Override
     @Nullable
-    public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType,
-            Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+    public Object beforeBodyWrite(Object body,
+            MethodParameter returnType,
+            MediaType selectedContentType,
+            Class selectedConverterType,
+            ServerHttpRequest request,
+            ServerHttpResponse response) {
 
-        HttpServletResponse httpResponse = ((ServletServerHttpResponse) response).getServletResponse();
-        int statusCode = httpResponse.getStatus();
+        HttpServletResponse httpResponse = null;
+        if (response instanceof ServletServerHttpResponse servletResponse) {
+            httpResponse = servletResponse.getServletResponse();
+        }
+
+        int statusCode = httpResponse != null ? httpResponse.getStatus() : 200;
 
         String methodName = returnType.getMethod() != null ? returnType.getMethod().getName() : "Unknown";
         String path = request.getURI().getPath();
 
         log.debug("Intercepting response for path: {}, method: {}, status: {}", path, methodName, statusCode);
 
-        // Nếu là String hoặc status lỗi (>= 400) thì trả về nguyên body không format
-        if (body instanceof String || statusCode >= 400) {
+        if (statusCode >= 400) {
             log.debug("Skipping formatting for response. Status: {}, body type: {}", statusCode,
-                    body.getClass().getSimpleName());
+                    body != null ? body.getClass().getSimpleName() : "null");
             return body;
         }
 
-        // Lấy mô tả từ annotation (nếu có)
+        if (body instanceof String stringBody) {
+            try {
+                ResponseData<String> wrapper = ResponseData.<String>builder()
+                        .status(statusCode)
+                        .message("OK")
+                        .data(stringBody)
+                        .build();
+                return objectMapper.writeValueAsString(wrapper);
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException("Failed to serialize response", e);
+            }
+        }
+
         Method method = returnType.getMethod();
         ApiDescription apiDescription = method != null ? method.getAnnotation(ApiDescription.class) : null;
         String messageApi = apiDescription != null ? apiDescription.value() : "CALL API THÀNH CÔNG";

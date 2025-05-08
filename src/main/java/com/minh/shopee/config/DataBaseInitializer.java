@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.minh.shopee.models.User;
+import com.minh.shopee.domain.User;
 import com.minh.shopee.repository.UserRepository;
 
 import jakarta.transaction.Transactional;

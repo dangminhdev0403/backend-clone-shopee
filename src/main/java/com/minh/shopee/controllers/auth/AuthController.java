@@ -24,11 +24,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.minh.shopee.models.User;
-import com.minh.shopee.models.anotation.ApiDescription;
-import com.minh.shopee.models.dto.ResLoginDTO;
-import com.minh.shopee.models.dto.users.UserDTO;
-import com.minh.shopee.models.request.LoginRequest;
+import com.minh.shopee.domain.User;
+import com.minh.shopee.domain.anotation.ApiDescription;
+import com.minh.shopee.domain.dto.ResLoginDTO;
+import com.minh.shopee.domain.dto.users.UserDTO;
+import com.minh.shopee.domain.request.LoginRequest;
 import com.minh.shopee.services.UserService;
 import com.minh.shopee.services.utils.SecurityUtils;
 
@@ -37,7 +37,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 @Slf4j(topic = "AuthController")
 public class AuthController {

@@ -1,4 +1,4 @@
-package com.minh.shopee.models.request;
+package com.minh.shopee.domain.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

@@ -1,8 +1,6 @@
-package com.minh.shopee.models;
+package com.minh.shopee.domain;
 
-
-
-import com.minh.shopee.models.base.BaseEntity;
+import com.minh.shopee.domain.base.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

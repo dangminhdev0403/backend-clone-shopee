@@ -1,4 +1,4 @@
-package com.minh.shopee.models.dto;
+package com.minh.shopee.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.minh.shopee.models.User;
+import com.minh.shopee.domain.User;
 import com.minh.shopee.repository.UserRepository;
 import com.minh.shopee.services.UserService;
 import com.minh.shopee.services.utils.error.DuplicateException;

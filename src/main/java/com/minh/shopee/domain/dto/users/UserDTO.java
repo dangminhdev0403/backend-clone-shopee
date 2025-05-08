@@ -1,4 +1,4 @@
-package com.minh.shopee.models.dto.users;
+package com.minh.shopee.domain.dto.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
