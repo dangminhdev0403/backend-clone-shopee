@@ -65,4 +65,11 @@ public class CategoryServiceImpl implements CategoryService {
         return entity;
     }
 
+    @Override
+    public void deleteCategory(Long id) {
+        Category categoryFound = this.getCategoryById(id, Category.class);
+        log.info("Deleting category with id {}: {}", categoryFound.getId(), categoryFound);
+        this.categoryRepository.delete(categoryFound);
+    }
+
 }

@@ -3,6 +3,7 @@ package com.minh.shopee.controllers.admin;
 import java.util.Set;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -45,6 +46,13 @@ public class CategoryController {
         log.info("Category updated: {}", categoryUpdated);
         return ResponseEntity.ok(categoryUpdated);
 
+    }
+
+    @DeleteMapping()
+    public ResponseEntity<Void> deleteCategory(Long id) {
+        this.categoryService.deleteCategory(id);
+        log.info("Category deleted with id: {}", id);
+        return ResponseEntity.ok().build();
     }
 
 }

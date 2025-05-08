@@ -18,4 +18,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long>, JpaSp
     <T> Optional<T> findByName(String name, Class<T> type);
 
     <T> Optional<T> findById(Long id, Class<T> type);
+
+    
 }

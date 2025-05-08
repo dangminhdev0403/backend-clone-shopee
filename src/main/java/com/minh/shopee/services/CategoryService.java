@@ -12,4 +12,6 @@ public interface CategoryService {
     <T> T getCategoryById(Long id, Class<T> type);
 
     Category updateCategory(Category entity);
+
+    void deleteCategory(Long id);
 }
