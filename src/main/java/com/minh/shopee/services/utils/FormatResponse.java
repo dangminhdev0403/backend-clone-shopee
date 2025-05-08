@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.minh.shopee.domain.anotation.ApiDescription;
-import com.minh.shopee.domain.response.ResponseData;
+import com.minh.shopee.domain.dto.response.ResponseData;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

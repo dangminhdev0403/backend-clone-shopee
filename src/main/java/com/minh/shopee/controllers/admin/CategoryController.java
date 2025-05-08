@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.minh.shopee.domain.Category;
+import com.minh.shopee.domain.dto.request.CategoryDTO;
 import com.minh.shopee.services.CategoryService;
 
 import lombok.RequiredArgsConstructor;
@@ -24,8 +25,8 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping()
-    public ResponseEntity<Set<Category>> getAllCategories() {
-        Set<Category> categories = this.categoryService.getAllCategories(Category.class);
+    public ResponseEntity<Set<CategoryDTO>> getAllCategories() {
+        Set<CategoryDTO> categories = this.categoryService.getAllCategories(CategoryDTO.class);
 
         return ResponseEntity.ok(categories);
     }
@@ -41,7 +42,9 @@ public class CategoryController {
     @PutMapping()
     public ResponseEntity<Category> updateCategory(@RequestBody Category entity) {
         Category categoryUpdated = this.categoryService.updateCategory(entity);
+        log.info("Category updated: {}", categoryUpdated);
         return ResponseEntity.ok(categoryUpdated);
+
     }
 
 }

@@ -1,4 +1,4 @@
-package com.minh.shopee.domain.response;
+package com.minh.shopee.domain.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -60,8 +60,9 @@ public class CategoryServiceImpl implements CategoryService {
         log.info("Updating category with id {}: {}", categoryFound.getId(), categoryFound);
 
         categoryFound.setName(entity.getName());
+        this.categoryRepository.save(categoryFound);
 
-        return this.categoryRepository.save(categoryFound);
+        return entity;
     }
 
 }

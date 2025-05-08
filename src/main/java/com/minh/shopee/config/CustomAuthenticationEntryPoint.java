@@ -9,7 +9,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.minh.shopee.domain.response.ResponseData;
+import com.minh.shopee.domain.dto.response.ResponseData;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
