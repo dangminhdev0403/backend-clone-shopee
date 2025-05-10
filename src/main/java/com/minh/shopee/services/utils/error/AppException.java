@@ -10,8 +10,9 @@ import lombok.Getter;
 public class AppException extends RuntimeException {
     private final int status;
     private final String error;
-    private final Object message; // Chấp nhận danh sách lỗi (List) hoặc chuỗi lỗi duy nhất
+    private final transient Object message; // Chấp nhận danh sách lỗi (List) hoặc chuỗi lỗi duy nhất
 
+    @SuppressWarnings("unchecked")
     @Override
     public String getMessage() {
         if (message instanceof List<?>) {

@@ -17,7 +17,7 @@ public class SecurityConfiguration {
                         CustomAuthenticationEntryPoint customAuthenticationEntryPoint)
                         throws Exception {
                 String apiPrefix = "/api/v1";
-                String[] publicPaths = { "/auth/**", "/categories/**" };
+                String[] publicPaths = { "/auth/**", "/categories/**","/api-docs/**","sư" };
 
                 String[] whiteList = Arrays.stream(publicPaths)
                                 .map(path -> path.equals("/") ? path : apiPrefix + path)
