@@ -201,7 +201,6 @@ public class AuthController {
                 .httpOnly(true)
                 .path("/")
                 .maxAge(refreshTokenExpiration).build();
-
         return ResponseEntity.ok().header(HEADER_NAME, cookie.toString()).body(resLoginDTO);
     }
 }

@@ -24,7 +24,6 @@ public class SecurityConfiguration {
                 String[] versionedPaths = { "/categories/**", "/posts/**" };
                 // Các path chung (không version)
                 String[] commonPaths = { "/auth/**", "/swagger-ui/**", "/api-docs/**" };
-
                 // Gộp path công khai cho tất cả version
                 List<String> versionedWhitelist = versions.stream()
                                 .flatMap(version -> Arrays.stream(versionedPaths)
