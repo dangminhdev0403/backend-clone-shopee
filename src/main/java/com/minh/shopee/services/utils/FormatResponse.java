@@ -24,23 +24,26 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice
 @Slf4j(topic = "FormatResponse")
 @RequiredArgsConstructor
+
 public class FormatResponse implements ResponseBodyAdvice<Object> {
 
     private final ObjectMapper objectMapper;
 
     @Override
-    public boolean supports(MethodParameter returnType, Class converterType) {
+
+    public boolean supports(@SuppressWarnings("null") MethodParameter returnType,
+            @SuppressWarnings("null") Class converterType) {
         return true;
     }
 
     @Override
     @Nullable
-    public Object beforeBodyWrite(Object body,
-            MethodParameter returnType,
-            MediaType selectedContentType,
-            Class selectedConverterType,
-            ServerHttpRequest request,
-            ServerHttpResponse response) {
+    public Object beforeBodyWrite(@SuppressWarnings("null") Object body,
+            @SuppressWarnings("null") MethodParameter returnType,
+            @SuppressWarnings("null") MediaType selectedContentType,
+            @SuppressWarnings("null") Class selectedConverterType,
+            @SuppressWarnings("null") ServerHttpRequest request,
+            @SuppressWarnings("null") ServerHttpResponse response) {
 
         HttpServletResponse httpResponse = null;
         if (response instanceof ServletServerHttpResponse servletResponse) {
@@ -49,6 +52,7 @@ public class FormatResponse implements ResponseBodyAdvice<Object> {
 
         int statusCode = httpResponse != null ? httpResponse.getStatus() : 200;
 
+        @SuppressWarnings("null")
         String methodName = returnType.getMethod() != null ? returnType.getMethod().getName() : "Unknown";
         String path = request.getURI().getPath();
 

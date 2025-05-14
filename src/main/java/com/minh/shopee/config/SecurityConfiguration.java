@@ -21,7 +21,7 @@ public class SecurityConfiguration {
                 List<String> versions = List.of("v1", "v2", "v3");
                 String apiBase = "/api";
                 // Các path công khai cho từng version
-                String[] versionedPaths = { "/categories/**", "/posts/**" };
+                String[] versionedPaths = { "/categories/**", "/posts/**", "/auth/**" };
                 // Các path chung (không version)
                 String[] commonPaths = { "/auth/**", "/swagger-ui/**", "/api-docs/**" };
                 // Gộp path công khai cho tất cả version
