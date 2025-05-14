@@ -57,8 +57,8 @@ public class FormatResponse implements ResponseBodyAdvice<Object> {
         String path = request.getURI().getPath();
 
         log.debug("Intercepting response for path: {}, method: {}, status: {}", path, methodName, statusCode);
-
-        if (statusCode >= 400) {
+        boolean isSwaggerRequest = path.contains("swagger") || path.contains("v3/api-docs");
+        if (statusCode >= 400 || isSwaggerRequest) {
             log.debug("Skipping formatting for response. Status: {}, body type: {}", statusCode,
                     body != null ? body.getClass().getSimpleName() : "null");
             return body;
