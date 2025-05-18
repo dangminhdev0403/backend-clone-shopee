@@ -34,7 +34,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Throwable.class)
     public ResponseEntity<ResponseData<Object>> handleAllExceptions(Throwable ex, HttpServletRequest request) {
         int statusCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
-        String error = "Lỗi chưa xử lí";
+        String titleError = ex.getClass().getSimpleName();
+        String error = "Lỗi chưa xử lí:" + titleError;
         Object message = ex.getMessage();
 
         if (ex instanceof MethodArgumentNotValidException e) {
