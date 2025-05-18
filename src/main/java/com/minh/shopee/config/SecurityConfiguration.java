@@ -22,7 +22,7 @@ public class SecurityConfiguration {
                 String apiBase = "/api";
                 // Các path công khai cho từng version
                 String[] versionedPaths = { "/categories/**", "/posts/**", "/auth/login", "/auth/refresh",
-                                "/provinces/**", "/districts/**", "/wards/**" };
+                                "/provinces/**", "/districts/**", "/wards/**", "/profile/**" };
                 // Các path chung (không version)
                 String[] commonPaths = { "/swagger-ui/**", "/v3/api-docs/**" };
                 // Gộp path
