@@ -98,4 +98,23 @@ public class LocationServiceImpl implements LocationService {
 
         log.warn("==> All location data has been deleted.");
     }
+
+    @Override
+    public <T> List<T> getListProvinces(Class<T> type) {
+        log.debug("Fetching list of provinces with projection type: {}", type.getSimpleName());
+        return this.provinceRepository.findAllBy(type);
+    }
+
+    @Override
+    public <T> List<T> getListDistricts(Long provinceId, Class<T> type) {
+        log.debug("Fetching list of districts with projection type: {}", type.getSimpleName());
+        return this.districtRepository.findByProvinceId(provinceId, type);
+    }
+
+    @Override
+    public <T> List<T> getListWards(Long provinceId, Class<T> type) {
+        log.debug("Fetching list of wards with projection type: {}", type.getSimpleName());
+        return this.wardRepository.findByDistrictId(provinceId, type);
+    }
+
 }
