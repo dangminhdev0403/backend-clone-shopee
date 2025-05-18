@@ -2,7 +2,7 @@ package com.minh.shopee.services;
 
 import java.util.List;
 
-import com.minh.shopee.domain.User;
+import com.minh.shopee.domain.model.User;
 
 public interface UserService {
 

@@ -21,10 +21,10 @@ public class SecurityConfiguration {
                 List<String> versions = List.of("v1", "v2", "v3");
                 String apiBase = "/api";
                 // Các path công khai cho từng version
-                String[] versionedPaths = { "/categories/**", "/posts/**", "/auth/**" };
+                String[] versionedPaths = { "/categories/**", "/posts/**", "/auth/login", "/auth/refresh", };
                 // Các path chung (không version)
-                String[] commonPaths = { "/auth/**", "/swagger-ui/**", "/v3/api-docs/**" };
-                // Gộp path công khai cho tất cả version
+                String[] commonPaths = { "/swagger-ui/**", "/v3/api-docs/**" };
+                // Gộp path 
                 List<String> versionedWhitelist = versions.stream()
                                 .flatMap(version -> Arrays.stream(versionedPaths)
                                                 .map(path -> apiBase + "/" + version + path))

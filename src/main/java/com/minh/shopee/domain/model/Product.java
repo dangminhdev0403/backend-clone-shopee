@@ -1,4 +1,4 @@
-package com.minh.shopee.domain;
+package com.minh.shopee.domain.model;
 
 import java.math.BigDecimal;
 import java.util.List;

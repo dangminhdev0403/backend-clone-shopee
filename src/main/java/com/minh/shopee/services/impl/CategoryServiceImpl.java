@@ -6,7 +6,7 @@ import java.util.Set;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.minh.shopee.domain.Category;
+import com.minh.shopee.domain.model.Category;
 import com.minh.shopee.repository.CategoryRepository;
 import com.minh.shopee.services.CategoryService;
 import com.minh.shopee.services.utils.error.AppException;

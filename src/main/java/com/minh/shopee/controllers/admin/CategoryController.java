@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.minh.shopee.domain.Category;
 import com.minh.shopee.domain.dto.request.CategoryDTO;
+import com.minh.shopee.domain.model.Category;
 import com.minh.shopee.services.CategoryService;
 
 import lombok.RequiredArgsConstructor;
@@ -33,12 +35,14 @@ public class CategoryController {
     }
 
     @PostMapping()
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
-
+    public ResponseEntity<Category> createCategory(@RequestParam("file") MultipartFile  file,
+            @RequestBody Category category) {
+                
         Category categoryCreated = this.categoryService.createCategory(category);
         log.info("Category created: {}", category);
         return ResponseEntity.ok(categoryCreated);
     }
+
 
     @PutMapping()
     public ResponseEntity<Category> updateCategory(@RequestBody Category entity) {
