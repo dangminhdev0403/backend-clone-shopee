@@ -28,5 +28,9 @@ public class User extends BaseEntity {
     private String password;
 
     @Column(columnDefinition = "LONGTEXT")
+    private String avatarUrl;
+
+    @Column(columnDefinition = "LONGTEXT")
     private String refreshToken;
+
 }

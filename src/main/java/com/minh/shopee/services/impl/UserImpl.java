@@ -8,8 +8,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.minh.shopee.domain.dto.request.UserReqDTO;
 import com.minh.shopee.domain.model.User;
 import com.minh.shopee.repository.UserRepository;
 import com.minh.shopee.services.UserService;
@@ -122,6 +124,64 @@ public class UserImpl implements UserService {
 
         log.warn("User or refresh token not found for email: {}", email);
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User or refresh token not found");
+    }
+
+    @Override
+    public User updateUser(String email, UserReqDTO userReqDTO) {
+        log.info("Update user request for email: {}", email);
+
+        User userDb = this.findByUsername(email);
+
+        log.debug("Current user data before update: name={}, email={}", userDb.getName(), userDb.getEmail());
+
+        // Cập nhật tên nếu có giá trị
+        Optional.ofNullable(userReqDTO.getName())
+                .filter(StringUtils::hasText)
+                .ifPresent(name -> {
+                    log.info("Updating name from '{}' to '{}'", userDb.getName(), name);
+                    userDb.setName(name);
+                    log.info("Name updated successfully for user: {}", name);
+
+                });
+
+        // Cập nhật email nếu có và khác email hiện tại
+        if (StringUtils.hasText(userReqDTO.getEmail()) && !userReqDTO.getEmail().equalsIgnoreCase(email)) {
+            if (this.isExistEmail(userReqDTO.getEmail())) {
+                log.warn("Attempt to update email to existing email: {}", userReqDTO.getEmail());
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email is already exist");
+            }
+            log.info("Updating email from '{}' to '{}'", userDb.getEmail(), userReqDTO.getEmail());
+            userDb.setEmail(userReqDTO.getEmail());
+            log.info("Email updated successfully for user: {}", userReqDTO.getEmail());
+
+        }
+
+        // Cập nhật password nếu có currentPassword và newPassword hợp lệ
+        if (StringUtils.hasText(userReqDTO.getCurrentPassword()) && StringUtils.hasText(userReqDTO.getNewPassword())) {
+            log.info("Attempting to update password for user: {}", email);
+            boolean isValidPass = this.isCurrentPasswordValid(userReqDTO.getCurrentPassword(), userDb);
+            if (!isValidPass) {
+                log.warn("Invalid current password provided for user: {}", email);
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Current password is invalid");
+            }
+            userDb.setPassword(passwordEncoder.encode(userReqDTO.getNewPassword()));
+            log.info("Password updated successfully for user: {}", email);
+        }
+
+        User updatedUser = this.userRepository.save(userDb);
+
+        log.info("User updated successfully: email={}, name={}", updatedUser.getEmail(), updatedUser.getName());
+
+        return updatedUser;
+    }
+
+    public boolean isCurrentPasswordValid(String currentPasswordFromClient, User userDb) {
+        return passwordEncoder.matches(currentPasswordFromClient, userDb.getPassword());
+    }
+
+    @Override
+    public boolean isExistEmail(String email) {
+        return this.userRepository.existsByEmail(email);
     }
 
 }

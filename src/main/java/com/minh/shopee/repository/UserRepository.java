@@ -25,6 +25,8 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 
     <T> Optional<T> findByEmailAndRefreshToken(String email, String refreshToken, Class<T> type);
 
+    boolean existsByEmail(String email);
+
     @Modifying
     @Transactional
     @Query("UPDATE User u SET u.refreshToken = :refreshToken WHERE u.email = :email")
