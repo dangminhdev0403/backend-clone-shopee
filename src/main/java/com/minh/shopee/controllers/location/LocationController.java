@@ -3,6 +3,7 @@ package com.minh.shopee.controllers.location;
 import java.io.IOException;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +23,15 @@ public class LocationController {
     public ResponseEntity<String> addLocation(
             @org.springframework.web.bind.annotation.RequestParam("locationFile") MultipartFile locationFile)
             throws IOException {
-        this.locationService.addLocation(locationFile);
+        this.locationService.addAllLocation(locationFile);
         return ResponseEntity.ok().body("Đã thêm đủ danh sách địa chỉ");
 
+    }
+
+    @DeleteMapping("/locations")
+    public ResponseEntity<String> deleteLocation() {
+        this.locationService.deleteAllLocations();
+        return ResponseEntity.ok().body("Đã xóa hết địa chỉ");
     }
 
 }
