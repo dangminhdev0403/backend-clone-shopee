@@ -2,7 +2,9 @@ package com.minh.shopee.services.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -13,6 +15,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.minh.shopee.domain.model.Category;
 import com.minh.shopee.domain.model.location.District;
 import com.minh.shopee.domain.model.location.Province;
 import com.minh.shopee.domain.model.location.Ward;
@@ -28,6 +31,8 @@ public class ExcelHelperImpl implements ExcelHelper {
 
     @Override
     public void isExcelFile(MultipartFile file) {
+        log.info("read Excel file: {}", file.getOriginalFilename());
+
         String originalFilename = file.getOriginalFilename();
         log.info("Checking file excel: {}", originalFilename);
 
@@ -117,6 +122,43 @@ public class ExcelHelperImpl implements ExcelHelper {
         locationData.setWards(wards);
 
         return locationData;
+    }
+
+    @Override
+    public List<Category> readExcelCategoryFile(MultipartFile file) throws IOException {
+        // Kiểm tra xem có đúng file Excel không
+        this.isExcelFile(file);
+
+        List<Category> categories = new ArrayList<>();
+        DataFormatter formatter = new DataFormatter();
+
+        try (InputStream is = file.getInputStream(); Workbook workbook = WorkbookFactory.create(is)) {
+            Sheet sheet = workbook.getSheetAt(0);
+
+            for (Row row : sheet) {
+                // Đọc dữ liệu từ cột đầu tiên (cột tên danh mục)
+                String categoryName = formatter.formatCellValue(row.getCell(0)).trim();
+
+                // Bỏ qua dòng tiêu đề (dòng 0) hoặc nếu không có dữ liệu
+                if (row.getRowNum() == 0 || categoryName.isEmpty())
+                    continue;
+
+                // Tạo đối tượng Category
+                Category category = Category.builder()
+                        .name(categoryName)
+                        .build();
+
+                categories.add(category);
+
+                log.info("Row {} parsed: Category={}", row.getRowNum(), categoryName);
+            }
+
+        } catch (Exception e) {
+            log.error("Lỗi khi đọc file Excel: {}", e.getMessage(), e);
+            throw new IOException("Không thể đọc dữ liệu từ file Excel", e);
+        }
+
+        return categories;
     }
 
 }

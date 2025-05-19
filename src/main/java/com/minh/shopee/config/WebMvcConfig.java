@@ -14,7 +14,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     private String uploadDir;
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    public void addResourceHandlers(@org.springframework.lang.NonNull ResourceHandlerRegistry registry) {
         registry
                 .addResourceHandler("/upload/**")
                 .addResourceLocations("file:" + Paths.get(uploadDir).toAbsolutePath().toUri());

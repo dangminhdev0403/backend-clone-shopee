@@ -1,10 +1,12 @@
 package com.minh.shopee.controllers.admin;
 
+import java.io.IOException;
 import java.util.Set;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,14 +37,19 @@ public class CategoryController {
     }
 
     @PostMapping()
-    public ResponseEntity<Category> createCategory(@RequestParam("file") MultipartFile  file,
-            @RequestBody Category category) {
-                
-        Category categoryCreated = this.categoryService.createCategory(category);
-        log.info("Category created: {}", category);
-        return ResponseEntity.ok(categoryCreated);
-    }
+    public ResponseEntity<String> createCategory(
+            @RequestParam(value = "fileCategoryExcel", required = false) MultipartFile file,
+            @ModelAttribute Category category) throws IOException {
+        if (file != null) {
+            this.categoryService.createListCategory(file);
+            return ResponseEntity.ok("Tạo danh mục thành công: ");
 
+        }
+
+        Category categoryCreated = this.categoryService.createCategory(category);
+
+        return ResponseEntity.ok("Tạo danh mục " + categoryCreated.getName() + " thành công ");
+    }
 
     @PutMapping()
     public ResponseEntity<Category> updateCategory(@RequestBody Category entity) {

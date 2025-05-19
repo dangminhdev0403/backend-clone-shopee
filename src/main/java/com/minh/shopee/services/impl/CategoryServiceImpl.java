@@ -1,15 +1,19 @@
 package com.minh.shopee.services.impl;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.minh.shopee.domain.model.Category;
 import com.minh.shopee.repository.CategoryRepository;
 import com.minh.shopee.services.CategoryService;
 import com.minh.shopee.services.utils.error.AppException;
+import com.minh.shopee.services.utils.files.ExcelHelper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j(topic = "CategoryService")
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
+    private final ExcelHelper excelHelper;
 
     @Override
     public <T> Set<T> getAllCategories(Class<T> type) {
@@ -70,6 +75,16 @@ public class CategoryServiceImpl implements CategoryService {
         Category categoryFound = this.getCategoryById(id, Category.class);
         log.info("Deleting category with id {}: {}", categoryFound.getId(), categoryFound);
         this.categoryRepository.delete(categoryFound);
+    }
+
+    @Override
+    public void createListCategory(MultipartFile fileExcel) throws IOException {
+        List<Category> categories = this.excelHelper.readExcelCategoryFile(fileExcel);
+        List<Category> categoriesDb = this.categoryRepository.findAll();
+        categories.removeIf(category -> categoriesDb.stream()
+                .anyMatch(categoryDb -> categoryDb.getName().equalsIgnoreCase(category.getName())));
+        this.categoryRepository.saveAll(categories);
+        log.info("Created list of categories: {}", categories);
     }
 
 }
