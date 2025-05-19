@@ -31,8 +31,7 @@ public class ProductServiceImpl implements ProductSerivce {
 
     @Override
     public <T> Set<T> getAllProducts(Class<T> type) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllProducts'");
+        return productRepository.findAllBy(type);
     }
 
     @Override

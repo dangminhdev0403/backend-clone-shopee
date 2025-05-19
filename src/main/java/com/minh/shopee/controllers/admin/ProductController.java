@@ -2,8 +2,10 @@ package com.minh.shopee.controllers.admin;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +35,12 @@ public class ProductController {
         URI location = URI.create("/api/v1/products");
         return ResponseEntity.created(location)
                 .body(productCreate);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<Set<ProductResDTO>> getAllProducts() {
+        Set<ProductResDTO> products = productSerivce.getAllProducts(ProductResDTO.class);
+        return ResponseEntity.ok(products);
     }
 
 }

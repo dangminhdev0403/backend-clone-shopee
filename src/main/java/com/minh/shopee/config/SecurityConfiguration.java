@@ -1,16 +1,21 @@
 package com.minh.shopee.config;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.minh.shopee.config.routes.ApiRoutes;
+import com.minh.shopee.config.routes.CommonRoutes;
+import com.minh.shopee.config.routes.ProductRoutes;
+import com.minh.shopee.config.routes.UserRoutes;
 
 @Configuration
 public class SecurityConfiguration {
@@ -19,36 +24,52 @@ public class SecurityConfiguration {
         public SecurityFilterChain filterChain(HttpSecurity http,
                         CustomAuthenticationEntryPoint customAuthenticationEntryPoint)
                         throws Exception {
-                List<String> versions = List.of("v1", "v2", "v3");
-                String apiBase = "/api";
-                // Các path công khai cho từng version
-                String[] versionedPaths = { "/posts/**", "/auth/login", "/auth/refresh",
-                                "/provinces/**", "/districts/**", "/wards/**" };
-                // Các path chung (không version)
-                String[] commonPaths = { "/swagger-ui/**", "/v3/api-docs/**" };
-                // Gộp path
-                List<String> versionedWhitelist = versions.stream()
-                                .flatMap(version -> Arrays.stream(versionedPaths)
-                                                .map(path -> apiBase + "/" + version + path))
+
+                // 1. Tạo danh sách public versioned routes theo từng API version
+                List<String> versionedWhitelist = ApiRoutes.API_VERSIONS.stream()
+                                .flatMap(version -> Arrays.stream(ApiRoutes.PUBLIC_VERSIONED_ENDPOINTS)
+                                                .map(path -> ApiRoutes.API_BASE + "/" + version + path))
                                 .toList();
-                // Gộp tất cả lại
-                String[] whiteList = Stream.concat(
-                                versionedWhitelist.stream(),
-                                Arrays.stream(commonPaths)).toArray(String[]::new);
+                // 2. Gộp tất cả các route public từ các module
+                String[] whitelist = Stream.of(
+                                versionedWhitelist,
+                                Arrays.asList(ApiRoutes.PUBLIC_COMMON_ENDPOINTS),
+                                Arrays.asList(CommonRoutes.SWAGGER),
+                                Arrays.asList(CommonRoutes.LOCATION_API),
+                                Arrays.asList(UserRoutes.PUBLIC_ENDPOINTS),
+                                Arrays.asList(ProductRoutes.PUBLIC_ENDPOINTS))
+                                .flatMap(Collection::stream)
+                                .toArray(String[]::new);
 
                 http
-                                .csrf(c -> c.disable())
+                                // CSRF nên disable cho REST API
+                                .csrf(csrf -> csrf.disable())
+
+                                // CORS mặc định
                                 .cors(Customizer.withDefaults())
-                                .authorizeHttpRequests(authz ->
-                                // prettier-ignore
-                                authz.requestMatchers(whiteList)
-                                                .permitAll()
-                                                .requestMatchers(HttpMethod.GET, apiBase + "/v1/categories/**")
-                                                .permitAll()
-                                                .anyRequest().authenticated())
-                                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())
+
+                                // Phân quyền route
+                                .authorizeHttpRequests(authz -> {
+                                        // 3. Public routes
+                                        authz.requestMatchers(whitelist).permitAll();
+
+                                        // 4. Các route chỉ cho phép method cụ thể (GET, POST, ...)
+                                        ApiRoutes.METHOD_SPECIFIC_ENDPOINTS.forEach((method, paths) -> authz
+                                                        .requestMatchers(method, paths).permitAll());
+
+                                        // 5. Các route còn lại phải xác thực
+                                        authz.anyRequest().authenticated();
+                                })
+
+                                // Sử dụng JWT
+                                .oauth2ResourceServer(oauth2 -> oauth2
+                                                .jwt(Customizer.withDefaults())
                                                 .authenticationEntryPoint(customAuthenticationEntryPoint))
-                                .formLogin(f -> f.disable())
+
+                                // Tắt form login truyền thống
+                                .formLogin(form -> form.disable())
+
+                                // Stateless cho RESTful API
                                 .sessionManagement(session -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
