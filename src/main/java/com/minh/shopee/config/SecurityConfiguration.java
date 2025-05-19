@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -21,8 +22,8 @@ public class SecurityConfiguration {
                 List<String> versions = List.of("v1", "v2", "v3");
                 String apiBase = "/api";
                 // Các path công khai cho từng version
-                String[] versionedPaths = { "/categories/**", "/posts/**", "/auth/login", "/auth/refresh",
-                                "/provinces/**", "/districts/**", "/wards/**", "/profile/**" };
+                String[] versionedPaths = { "/posts/**", "/auth/login", "/auth/refresh",
+                                "/provinces/**", "/districts/**", "/wards/**" };
                 // Các path chung (không version)
                 String[] commonPaths = { "/swagger-ui/**", "/v3/api-docs/**" };
                 // Gộp path
@@ -41,6 +42,8 @@ public class SecurityConfiguration {
                                 .authorizeHttpRequests(authz ->
                                 // prettier-ignore
                                 authz.requestMatchers(whiteList)
+                                                .permitAll()
+                                                .requestMatchers(HttpMethod.GET, apiBase + "/v1/categories/**")
                                                 .permitAll()
                                                 .anyRequest().authenticated())
                                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())

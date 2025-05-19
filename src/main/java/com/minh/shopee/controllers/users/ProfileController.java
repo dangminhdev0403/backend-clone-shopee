@@ -1,5 +1,7 @@
 package com.minh.shopee.controllers.users;
 
+import java.io.IOException;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,9 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequiredArgsConstructor
 @Slf4j(topic = "FileController")
-
 @RequestMapping("/api/v1/profile")
-
 public class ProfileController {
 
     private final UserService userService;
@@ -30,10 +30,11 @@ public class ProfileController {
     @PostMapping("")
     public ResponseEntity<User> updateProfile(
             @RequestParam(value = "avatarFile", required = false) MultipartFile avatarFile,
-            @ModelAttribute UserReqDTO userRequest) {
+            @ModelAttribute UserReqDTO userRequest) throws IOException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
-        User updatUser = this.userService.updateUser(email, userRequest);
+
+        User updatUser = this.userService.updateProfile(email, userRequest, avatarFile);
 
         return ResponseEntity.ok().body(updatUser);
     }

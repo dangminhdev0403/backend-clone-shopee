@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.minh.shopee.domain.dto.users.UserAuthDTO;
+import com.minh.shopee.domain.dto.response.users.UserAuthDTO;
 import com.minh.shopee.services.UserService;
 
 import lombok.RequiredArgsConstructor;

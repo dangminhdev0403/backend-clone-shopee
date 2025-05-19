@@ -1,6 +1,9 @@
 package com.minh.shopee.services;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.minh.shopee.domain.dto.request.UserReqDTO;
 import com.minh.shopee.domain.model.User;
@@ -21,7 +24,7 @@ public interface UserService {
 
     <T> T findByEmailAndRefreshToken(String email, String refreshToken, Class<T> type);
 
-    User updateUser(String email, UserReqDTO userReqDTO);
+    User updateProfile(String email, UserReqDTO userReqDTO ,MultipartFile avatarFile) throws IOException;
     
     boolean isExistEmail(String email);
 }

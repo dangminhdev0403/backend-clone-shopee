@@ -26,7 +26,7 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.stereotype.Service;
 
-import com.minh.shopee.domain.dto.ResLoginDTO;
+import com.minh.shopee.domain.dto.response.users.ResLoginDTO;
 
 import lombok.extern.slf4j.Slf4j;
 

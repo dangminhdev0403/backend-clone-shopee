@@ -1,4 +1,4 @@
-package com.minh.shopee.domain.dto;
+package com.minh.shopee.domain.dto.response.users;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

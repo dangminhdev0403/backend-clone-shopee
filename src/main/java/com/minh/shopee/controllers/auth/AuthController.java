@@ -25,9 +25,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.minh.shopee.domain.anotation.ApiDescription;
-import com.minh.shopee.domain.dto.ResLoginDTO;
 import com.minh.shopee.domain.dto.request.LoginRequest;
-import com.minh.shopee.domain.dto.users.UserDTO;
+import com.minh.shopee.domain.dto.response.users.ResLoginDTO;
+import com.minh.shopee.domain.dto.response.users.UserDTO;
 import com.minh.shopee.domain.model.User;
 import com.minh.shopee.services.UserService;
 import com.minh.shopee.services.utils.SecurityUtils;

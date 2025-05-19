@@ -1,5 +1,6 @@
 package com.minh.shopee.services.impl;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.minh.shopee.domain.dto.request.UserReqDTO;
@@ -16,6 +18,7 @@ import com.minh.shopee.domain.model.User;
 import com.minh.shopee.repository.UserRepository;
 import com.minh.shopee.services.UserService;
 import com.minh.shopee.services.utils.error.DuplicateException;
+import com.minh.shopee.services.utils.files.UploadCloud;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +30,7 @@ public class UserImpl implements UserService {
 
     private final UserRepository userRepository;
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final UploadCloud uploadCloud;
 
     @SuppressWarnings("null")
     @Override
@@ -127,7 +131,7 @@ public class UserImpl implements UserService {
     }
 
     @Override
-    public User updateUser(String email, UserReqDTO userReqDTO) {
+    public User updateProfile(String email, UserReqDTO userReqDTO, MultipartFile avatarFile) throws IOException {
         log.info("Update user request for email: {}", email);
 
         User userDb = this.findByUsername(email);
@@ -166,6 +170,14 @@ public class UserImpl implements UserService {
             }
             userDb.setPassword(passwordEncoder.encode(userReqDTO.getNewPassword()));
             log.info("Password updated successfully for user: {}", email);
+        }
+
+        if (avatarFile != null && !avatarFile.isEmpty()) {
+            if(userDb.getAvatarUrl() != null) {
+             this.uploadCloud.deleteFile(userDb.getAvatarUrl());
+            }
+            String uploadUrl = this.uploadCloud.handleSaveUploadFile(avatarFile, "avatar");
+            userDb.setAvatarUrl(uploadUrl);
         }
 
         User updatedUser = this.userRepository.save(userDb);

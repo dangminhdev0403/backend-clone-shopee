@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.minh.shopee.domain.dto.users.UserDTO;
+import com.minh.shopee.domain.dto.response.users.UserDTO;
 import com.minh.shopee.domain.model.User;
 import com.minh.shopee.services.UserService;
 
@@ -36,4 +36,5 @@ public class UserController {
         return ResponseEntity.ok().body(users);
     }
 
+    
 }
