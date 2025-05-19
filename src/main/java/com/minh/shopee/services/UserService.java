@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.minh.shopee.domain.dto.request.UserReqDTO;
+import com.minh.shopee.domain.dto.response.users.UpdateUserResDTO;
 import com.minh.shopee.domain.model.User;
 
 public interface UserService {
@@ -24,7 +25,7 @@ public interface UserService {
 
     <T> T findByEmailAndRefreshToken(String email, String refreshToken, Class<T> type);
 
-    User updateProfile(String email, UserReqDTO userReqDTO ,MultipartFile avatarFile) throws IOException;
+    UpdateUserResDTO updateProfile(String email, UserReqDTO userReqDTO ,MultipartFile avatarFile) throws IOException;
     
     boolean isExistEmail(String email);
 }

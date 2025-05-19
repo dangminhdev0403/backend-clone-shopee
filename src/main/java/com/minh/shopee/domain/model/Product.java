@@ -25,13 +25,13 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 public class Product extends BaseEntity {
 
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String description;
 
     @Column(precision = 10, scale = 2)
     private BigDecimal price;
 
-    private int stock;
+    private Integer stock;
 
     @OneToMany(mappedBy = "product")
     private List<ProductImage> images;

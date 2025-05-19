@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.minh.shopee.domain.dto.request.UserReqDTO;
+import com.minh.shopee.domain.dto.response.users.UpdateUserResDTO;
 import com.minh.shopee.domain.model.User;
 import com.minh.shopee.repository.UserRepository;
 import com.minh.shopee.services.UserService;
@@ -104,15 +105,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateProfile(String email, UserReqDTO userReqDTO, MultipartFile avatarFile) throws IOException {
+    public UpdateUserResDTO updateProfile(String email, UserReqDTO userReqDTO, MultipartFile avatarFile)
+            throws IOException {
         log.info("Update user request for email: {}", email);
         User userDb = findByUsername(email);
 
         applyUserUpdates(userDb, userReqDTO, avatarFile);
 
         User updatedUser = userRepository.save(userDb);
-        log.info("User updated successfully: email={}, name={}", updatedUser.getEmail(), updatedUser.getName());
-        return updatedUser;
+        UpdateUserResDTO response = mapToUpdateUserResDTO(updatedUser);
+
+        log.info("User updated successfully: email={}, name={}", response.getEmail(), response.getName());
+        return response;
     }
 
     private void applyUserUpdates(User userDb, UserReqDTO dto, MultipartFile avatarFile) throws IOException {
@@ -157,5 +161,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isExistEmail(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    private UpdateUserResDTO mapToUpdateUserResDTO(User user) {
+        return UpdateUserResDTO.builder()
+                .email(user.getEmail())
+                .name(user.getName())
+                .urlAvatar(user.getAvatarUrl())
+                .build();
     }
 }

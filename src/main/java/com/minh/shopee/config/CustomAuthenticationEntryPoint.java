@@ -30,7 +30,8 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         this.delegate.commence(request, response, authException);
         response.setContentType("application/json;charset=UTF-8");
         int statusCode = HttpStatus.UNAUTHORIZED.value();
-        ResponseData<Object> res = ResponseData.<Object>builder().status(statusCode).message("Unauthorized").build();
+        ResponseData<Object> res = ResponseData.<Object>builder().status(statusCode).error("Lỗi Xác Thực")
+                .message("Unauthorized").build();
         objectMapper.writeValue(response.getWriter(), res);
 
     }

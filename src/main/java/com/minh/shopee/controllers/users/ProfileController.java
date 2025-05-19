@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.minh.shopee.domain.dto.request.UserReqDTO;
-import com.minh.shopee.domain.model.User;
+import com.minh.shopee.domain.dto.response.users.UpdateUserResDTO;
 import com.minh.shopee.services.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -28,13 +28,13 @@ public class ProfileController {
     private final UserService userService;
 
     @PostMapping("")
-    public ResponseEntity<User> updateProfile(
+    public ResponseEntity<UpdateUserResDTO> updateProfile(
             @RequestParam(value = "avatarFile", required = false) MultipartFile avatarFile,
             @ModelAttribute UserReqDTO userRequest) throws IOException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
 
-        User updatUser = this.userService.updateProfile(email, userRequest, avatarFile);
+        UpdateUserResDTO updatUser = this.userService.updateProfile(email, userRequest, avatarFile);
 
         return ResponseEntity.ok().body(updatUser);
     }

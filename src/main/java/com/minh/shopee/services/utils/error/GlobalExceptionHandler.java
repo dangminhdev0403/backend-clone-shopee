@@ -3,6 +3,7 @@ package com.minh.shopee.services.utils.error;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -59,6 +60,11 @@ public class GlobalExceptionHandler {
             message = String.format("%s %s", e.getFieldName(), ex.getMessage());
             log.warn("⚠️ [409 DUPLICATE DATA] Field: {} | URL: {} | Message: {}", e.getFieldName(),
                     request.getRequestURL(), ex.getMessage());
+        } else if (ex instanceof DataIntegrityViolationException e) {
+            statusCode = HttpStatus.CONFLICT.value();
+            error = "Lỗi ràng buộc dữ liệu";
+            message = "Lỗi khi thao tác dữ liệu: " + getRootCauseMessage(e);
+            log.warn("⚠️ [409 DATA INTEGRITY VIOLATION] URL: {} | Message: {}", request.getRequestURL(), message, e);
         } else if (ex instanceof ResponseStatusException e) {
             statusCode = e.getStatusCode().value();
             error = e.getStatusCode().toString();
@@ -70,11 +76,9 @@ public class GlobalExceptionHandler {
             log.warn("⚠️ [401 BadCredentialsException] URL: {} | Message: {}", request.getRequestURL(),
                     ex.getMessage());
         } else if (ex instanceof AppException e) {
-
             statusCode = e.getStatus();
             error = e.getError();
             message = e.getMessage();
-
         } else {
             log.error("❌ [COMMON EXCEPTION] URL: {} | Message: {}", request.getRequestURL(), ex.getMessage(), ex);
         }
@@ -83,10 +87,20 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(statusCode).body(response);
     }
 
+    // Hàm lấy message gốc (root cause)
+    private String getRootCauseMessage(Throwable throwable) {
+        Throwable root = throwable;
+        while (root.getCause() != null && root.getCause() != root) {
+            root = root.getCause();
+        }
+        return root.getMessage();
+    }
+
     private List<Map<String, String>> extractFieldErrors(BindingResult result) {
         return result.getFieldErrors()
                 .stream()
                 .map(fieldError -> Map.of(fieldError.getField(), fieldError.getDefaultMessage()))
                 .toList();
     }
+
 }
