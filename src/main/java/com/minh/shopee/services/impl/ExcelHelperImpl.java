@@ -33,7 +33,7 @@ public class ExcelHelperImpl implements ExcelHelper {
 
         if (originalFilename == null ||
                 (!originalFilename.endsWith(".xlsx") && !originalFilename.endsWith(".xls")) ||
-                !file.getContentType().equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+                !"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet".equals(file.getContentType())) {
             log.error("Invalid file excel: {}", originalFilename);
             throw new AppException(400, "Invalid file excel", "File is not an Excel file");
         }
