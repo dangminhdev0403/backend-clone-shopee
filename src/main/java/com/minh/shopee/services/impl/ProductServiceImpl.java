@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.minh.shopee.domain.dto.request.ProductReqDTO;
+import com.minh.shopee.domain.dto.response.products.ProductNamePriceDTO;
 import com.minh.shopee.domain.dto.response.products.ProductResDTO;
 import com.minh.shopee.domain.model.Category;
 import com.minh.shopee.domain.model.Product;
 import com.minh.shopee.domain.model.ProductImage;
+import com.minh.shopee.domain.specification.ProductSpecification;
 import com.minh.shopee.repository.ProductImageRepository;
 import com.minh.shopee.repository.ProductRepository;
 import com.minh.shopee.services.ProductSerivce;
@@ -36,7 +38,7 @@ public class ProductServiceImpl implements ProductSerivce {
 
     @Override
     public <T> Set<T> getAllProducts(Class<T> type) {
-       
+
         return productRepository.findAllBy(type);
     }
 
@@ -110,6 +112,18 @@ public class ProductServiceImpl implements ProductSerivce {
             log.error("Error reading excel file: {}", e.getMessage());
             e.printStackTrace();
         }
+
+    }
+
+    @Override
+    public Page searchProducts(String keyword, Pageable pageable) {
+
+        // Page<Product> products =
+        // productRepository.findAll(ProductSpecification.hasName(keyword),
+        // pageable);
+
+        return this.productRepository.findAll(ProductSpecification.hasName(keyword), pageable,
+        ProductResDTO.class);
 
     }
 

@@ -3,17 +3,18 @@ package com.minh.shopee.services;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.minh.shopee.domain.dto.request.UserReqDTO;
 import com.minh.shopee.domain.dto.response.users.UpdateUserResDTO;
+import com.minh.shopee.domain.dto.response.users.UserDTO;
 import com.minh.shopee.domain.model.User;
 
 public interface UserService {
 
     User createUser(User user);
 
-    <T> List<T> getListUser(Class<T> type);
 
     User findByUsername(String username);
 
@@ -28,4 +29,6 @@ public interface UserService {
     UpdateUserResDTO updateProfile(String email, UserReqDTO userReqDTO ,MultipartFile avatarFile) throws IOException;
     
     boolean isExistEmail(String email);
+
+     Page<UserDTO> searchUsers (String keyword, org.springframework.data.domain.Pageable pageable);
 }

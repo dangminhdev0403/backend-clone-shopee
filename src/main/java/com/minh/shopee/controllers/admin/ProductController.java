@@ -56,4 +56,11 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<Page<Product>> searchProducts(@RequestParam("keyword") String keyword,
+            Pageable pageable) {
+        Page<Product> products = productSerivce.searchProducts(keyword, pageable);
+        return ResponseEntity.ok(products);
+    }
+
 }

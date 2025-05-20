@@ -1,9 +1,10 @@
 package com.minh.shopee.services.impl;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.minh.shopee.domain.dto.request.UserReqDTO;
 import com.minh.shopee.domain.dto.response.users.UpdateUserResDTO;
+import com.minh.shopee.domain.dto.response.users.UserDTO;
 import com.minh.shopee.domain.model.User;
+import com.minh.shopee.domain.specification.UserSpecification;
+import com.minh.shopee.repository.GenericRepositoryCustom;
 import com.minh.shopee.repository.UserRepository;
 import com.minh.shopee.services.UserService;
 import com.minh.shopee.services.utils.error.DuplicateException;
@@ -31,6 +35,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UploadCloud uploadCloud;
+    private final GenericRepositoryCustom<User> userCustomRepo;
+
 
     @Override
     public User createUser(User user) {
@@ -48,12 +54,6 @@ public class UserServiceImpl implements UserService {
         User savedUser = userRepository.save(user);
         log.info("User created successfully with email: {}", savedUser.getEmail());
         return savedUser;
-    }
-
-    @Override
-    public <T> List<T> getListUser(Class<T> type) {
-        log.debug("Fetching list of users with projection type: {}", type.getSimpleName());
-        return userRepository.findAllBy(type);
     }
 
     @Override
@@ -169,5 +169,11 @@ public class UserServiceImpl implements UserService {
                 .name(user.getName())
                 .urlAvatar(user.getAvatarUrl())
                 .build();
+    }
+
+    @Override
+    public Page<UserDTO> searchUsers(String keyword, Pageable pageable) {
+
+        return this.userCustomRepo.findAll(UserSpecification.hasName(keyword), pageable, UserDTO.class);
     }
 }

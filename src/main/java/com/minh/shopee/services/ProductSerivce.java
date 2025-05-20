@@ -14,9 +14,12 @@ import com.minh.shopee.domain.model.Product;
 public interface ProductSerivce {
 
     <T> Set<T> getAllProducts(Class<T> type);
-     Page<Product> getAllProducts(Pageable pageable);
+
+    Page<Product> getAllProducts(Pageable pageable);
+
+    Page<Product> searchProducts(String keyword, Pageable pageable);
 
     ProductResDTO createAProduct(ProductReqDTO productDTO, List<MultipartFile> imageProduct);
 
-    void createListProduct(MultipartFile file) ;
+    void createListProduct(MultipartFile file);
 }
