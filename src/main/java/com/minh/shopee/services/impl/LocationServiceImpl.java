@@ -16,7 +16,7 @@ import com.minh.shopee.repository.ProvinceRepository;
 import com.minh.shopee.repository.WardRepository;
 import com.minh.shopee.services.LocationService;
 import com.minh.shopee.services.utils.files.ExcelHelper;
-import com.minh.shopee.services.utils.files.LocationData;
+import com.minh.shopee.services.utils.files.data.LocationData;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

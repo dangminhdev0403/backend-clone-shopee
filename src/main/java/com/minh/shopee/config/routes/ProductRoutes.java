@@ -8,8 +8,8 @@ public class ProductRoutes {
     }
 
     public static final String[] PUBLIC_ENDPOINTS = {
-            BASE + "/v1/products/**",
-            BASE + "/v2/products/**"
+            // BASE + "/v1/products/**",
+            // BASE + "/v2/products/**"
     };
 
     public static final String[] ADMIN_ONLY_ENDPOINTS = {

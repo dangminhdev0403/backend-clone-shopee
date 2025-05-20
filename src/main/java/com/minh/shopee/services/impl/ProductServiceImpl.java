@@ -15,7 +15,9 @@ import com.minh.shopee.domain.model.ProductImage;
 import com.minh.shopee.repository.ProductImageRepository;
 import com.minh.shopee.repository.ProductRepository;
 import com.minh.shopee.services.ProductSerivce;
+import com.minh.shopee.services.utils.files.ExcelHelper;
 import com.minh.shopee.services.utils.files.UploadCloud;
+import com.minh.shopee.services.utils.files.data.ProductData;
 import com.minh.shopee.services.utils.mapper.ProductMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,7 @@ public class ProductServiceImpl implements ProductSerivce {
     private final ProductImageRepository productImageRepository;
     private final ProductRepository productRepository;
     private final UploadCloud uploadCloud;
+    private final ExcelHelper excelHelper;
 
     @Override
     public <T> Set<T> getAllProducts(Class<T> type) {
@@ -79,6 +82,27 @@ public class ProductServiceImpl implements ProductSerivce {
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
+    }
+
+    @Override
+    public void createListProduct(MultipartFile file) {
+        try {
+            ProductData productData = this.excelHelper.readExcelProductFile(file);
+            List<Product> listProducts = productData.getListProducts();
+            List<ProductImage> listProductImages = productData.getListProductImages();
+            if (listProducts != null && !listProducts.isEmpty()) {
+                log.info("Save List product: {}", listProducts);
+                productRepository.saveAll(listProducts);
+            }
+            if (listProductImages != null && !listProductImages.isEmpty()) {
+                log.info("Save List product image: {}", listProductImages);
+                productImageRepository.saveAll(listProductImages);
+            }
+        } catch (IOException e) {
+            log.error("Error reading excel file: {}", e.getMessage());
+            e.printStackTrace();
+        }
+
     }
 
 }

@@ -13,4 +13,6 @@ public interface ProductSerivce {
     <T> Set<T> getAllProducts(Class<T> type);
 
     ProductResDTO createAProduct(ProductReqDTO productDTO, List<MultipartFile> imageProduct);
+
+    void createListProduct(MultipartFile file) ;
 }

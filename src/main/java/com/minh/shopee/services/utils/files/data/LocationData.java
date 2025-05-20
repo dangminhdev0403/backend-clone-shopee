@@ -1,4 +1,4 @@
-package com.minh.shopee.services.utils.files;
+package com.minh.shopee.services.utils.files.data;
 
 import java.util.List;
 import java.util.Set;

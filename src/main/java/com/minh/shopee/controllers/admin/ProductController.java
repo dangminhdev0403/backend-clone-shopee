@@ -37,6 +37,15 @@ public class ProductController {
                 .body(productCreate);
     }
 
+    @PostMapping("/import")
+    public ResponseEntity<String> createListProduct(
+            @RequestParam(value = "fileProductExcel", required = false) MultipartFile file) {
+        if (file != null) {
+            this.productSerivce.createListProduct(file);
+            return ResponseEntity.ok("Tạo danh sách sản phẩm thành công: ");
+        }
+        return ResponseEntity.ok("Tạo danh sách sản phẩm không thành công: ");
+    }
     @GetMapping("")
     public ResponseEntity<Set<ProductResDTO>> getAllProducts() {
         Set<ProductResDTO> products = productSerivce.getAllProducts(ProductResDTO.class);
