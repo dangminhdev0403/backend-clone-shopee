@@ -2,6 +2,7 @@ package com.minh.shopee.domain.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minh.shopee.domain.base.BaseEntity;
 
 import jakarta.persistence.Entity;
@@ -23,5 +24,6 @@ import lombok.experimental.SuperBuilder;
 public class Category extends BaseEntity {
 
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<Product> products;
 }

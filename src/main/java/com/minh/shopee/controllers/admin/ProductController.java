@@ -2,8 +2,9 @@ package com.minh.shopee.controllers.admin;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Set;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.minh.shopee.domain.dto.request.ProductReqDTO;
 import com.minh.shopee.domain.dto.response.products.ProductResDTO;
+import com.minh.shopee.domain.model.Product;
 import com.minh.shopee.services.ProductSerivce;
 
 import jakarta.validation.Valid;
@@ -46,11 +48,12 @@ public class ProductController {
         }
         return ResponseEntity.ok("Tạo danh sách sản phẩm không thành công: ");
     }
+
     @GetMapping("")
-    public ResponseEntity<Set<ProductResDTO>> getAllProducts() {
-        Set<ProductResDTO> products = productSerivce.getAllProducts(ProductResDTO.class);
+    public ResponseEntity<Page<Product>> getAllProducts(Pageable pageable) {
+
+        Page<Product> products = productSerivce.getAllProducts(pageable);
         return ResponseEntity.ok(products);
     }
-    
 
 }

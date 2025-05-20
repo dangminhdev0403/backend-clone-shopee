@@ -3,6 +3,7 @@ package com.minh.shopee.domain.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minh.shopee.domain.base.BaseEntity;
 
 import jakarta.persistence.Column;
@@ -34,6 +35,7 @@ public class Product extends BaseEntity {
     private Integer stock;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<ProductImage> images;
 
     @ManyToOne

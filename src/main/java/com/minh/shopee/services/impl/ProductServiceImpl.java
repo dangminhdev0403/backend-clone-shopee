@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,7 +36,13 @@ public class ProductServiceImpl implements ProductSerivce {
 
     @Override
     public <T> Set<T> getAllProducts(Class<T> type) {
+       
         return productRepository.findAllBy(type);
+    }
+
+    @Override
+    public Page<Product> getAllProducts(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 
     @Override

@@ -49,6 +49,9 @@ public class GlobalExceptionHandler {
             error = "Endpoint không tồn tại";
             message = "URL " + request.getRequestURL() + " không tồn tại";
             log.warn("⚠️ [404 NOT FOUND] URL: {} | Message: {}", request.getRequestURL(), ex.getMessage());
+
+
+            
         } else if (ex instanceof HttpRequestMethodNotSupportedException) {
             statusCode = HttpStatus.METHOD_NOT_ALLOWED.value();
             error = "Method không hỗ trợ";
