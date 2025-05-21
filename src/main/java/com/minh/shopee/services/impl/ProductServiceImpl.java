@@ -8,12 +8,16 @@ import java.util.Set;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.minh.shopee.domain.dto.request.FiltersProduct;
 import com.minh.shopee.domain.dto.request.ProductReqDTO;
+import com.minh.shopee.domain.dto.request.filters.FiltersProduct;
+import com.minh.shopee.domain.dto.request.filters.SortFilter;
 import com.minh.shopee.domain.dto.response.products.ProductImageDTO;
 import com.minh.shopee.domain.dto.response.products.ProductProjection;
 import com.minh.shopee.domain.dto.response.products.ProductResDTO;
@@ -125,25 +129,14 @@ public class ProductServiceImpl implements ProductSerivce {
     }
 
     @Override
-    public Page<ProductResDTO> searchProducts(String keyword, FiltersProduct filter, Pageable pageable) {
+    public Page<ProductResDTO> searchProducts(String keyword, FiltersProduct filter, SortFilter sortFilter,
+            Pageable pageable) {
+        pageable = applySortFromFilter(pageable, sortFilter);
+        Specification<Product> spec = buildProductSpecification(keyword, filter);
 
-        if (filter != null) {
-            if (filter.getMinPrice().isPresent() && filter.getMaxPrice().isPresent()) {
-                BigDecimal minPrice = new BigDecimal(filter.getMinPrice().get());
-                BigDecimal maxPrice = new BigDecimal(filter.getMaxPrice().get());
-                ProductSpecification.hasPriceRange(minPrice, maxPrice);
-            }
-            if (filter.getStock().isPresent()) {
-                Integer stock = Integer.parseInt(filter.getStock().get());
-                ProductSpecification.hasStock(stock);
-            }
-            if (filter.getCategoryId().isPresent()) {
-                Long categoryId = Long.parseLong(filter.getCategoryId().get());
-                ProductSpecification.hasCategoryId(categoryId);
-            }
-        }
         log.info("getingg list product width filter: {}");
-        Page<ProductProjection> products = this.productCustomRepo.findAll(ProductSpecification.hasName(keyword),
+        Page<ProductProjection> products = this.productCustomRepo.findAll(
+                spec,
                 pageable,
                 ProductProjection.class);
         List<ProductProjection> productList = products.getContent();
@@ -161,6 +154,7 @@ public class ProductServiceImpl implements ProductSerivce {
                             .name(product.getName())
                             .price(product.getPrice())
                             .imageUrl(imageUrl)
+                            .stock(product.getStock())
                             .build();
                 }).toList();
 
@@ -168,5 +162,51 @@ public class ProductServiceImpl implements ProductSerivce {
                 dtoList,
                 pageable,
                 products.getTotalElements());
+    }
+
+    private Pageable applySortFromFilter(Pageable pageable, SortFilter sortFilter) {
+        log.info("Applying sort from filter: {}", sortFilter);
+        if (sortFilter != null) {
+
+            String sortBy = switch (sortFilter.getSortBy()) {
+                case "ctime" -> "createdAt";
+                default -> sortFilter.getSortBy();
+            };
+
+            String order = sortFilter.getOrder();
+
+            Sort.Direction direction = Sort.Direction.fromString(order);
+            Sort sort = Sort.by(direction, sortBy);
+
+            return PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
+
+        }
+        return PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("createdAt").descending());
+
+    }
+
+    private Specification<Product> buildProductSpecification(String keyword, FiltersProduct filter) {
+        Specification<Product> spec = Specification.where(null);
+        if (keyword != null && !keyword.isEmpty()) {
+            log.info("Searching product with keyword: {}", keyword);
+
+            spec = spec.and(ProductSpecification.hasName(keyword));
+        }
+        if (filter != null) {
+            if (filter.getMinPrice().isPresent() && filter.getMaxPrice().isPresent()) {
+                BigDecimal minPrice = new BigDecimal(filter.getMinPrice().get());
+                BigDecimal maxPrice = new BigDecimal(filter.getMaxPrice().get());
+                spec = spec.and(ProductSpecification.hasPriceRange(minPrice, maxPrice));
+            }
+            if (filter.getStock().isPresent()) {
+                Integer stock = Integer.parseInt(filter.getStock().get());
+                spec = spec.and(ProductSpecification.hasStock(stock));
+            }
+            if (filter.getCategoryId().isPresent()) {
+                Long categoryId = Long.parseLong(filter.getCategoryId().get());
+                spec = spec.and(ProductSpecification.hasCategoryId(categoryId));
+            }
+        }
+        return spec;
     }
 }

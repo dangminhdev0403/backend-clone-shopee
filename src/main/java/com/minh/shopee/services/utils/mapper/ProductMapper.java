@@ -12,7 +12,6 @@ public class ProductMapper {
         return ProductResDTO.builder()
                 .name(product.getName())
                 .price(product.getPrice())
-                .description(product.getDescription())
                 .stock(product.getStock())
                 .build();
     }
@@ -21,7 +20,6 @@ public class ProductMapper {
         return Product.builder()
                 .name(productResDTO.getName())
                 .price(productResDTO.getPrice())
-                .description(productResDTO.getDescription())
                 .stock(productResDTO.getStock())
                 .build();
     }

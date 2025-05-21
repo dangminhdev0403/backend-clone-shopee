@@ -13,7 +13,6 @@ public class ProductResDTO {
     private String name;
     private BigDecimal price;
     private String imageUrl;
-    private String description;
     private Integer stock;
 
 }

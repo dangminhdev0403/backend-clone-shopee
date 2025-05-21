@@ -7,8 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.minh.shopee.domain.dto.request.FiltersProduct;
 import com.minh.shopee.domain.dto.request.ProductReqDTO;
+import com.minh.shopee.domain.dto.request.filters.FiltersProduct;
+import com.minh.shopee.domain.dto.request.filters.SortFilter;
 import com.minh.shopee.domain.dto.response.products.ProductResDTO;
 import com.minh.shopee.domain.model.Product;
 
@@ -18,7 +19,7 @@ public interface ProductSerivce {
 
   Page<Product> getAllProducts(Pageable pageable);
 
-  Page<ProductResDTO> searchProducts(String keyword, FiltersProduct filter ,Pageable pageable);
+  Page<ProductResDTO> searchProducts(String keyword, FiltersProduct filter , SortFilter sortFilte ,Pageable pageable);
 
   ProductResDTO createAProduct(ProductReqDTO productDTO, List<MultipartFile> imageProduct);
 

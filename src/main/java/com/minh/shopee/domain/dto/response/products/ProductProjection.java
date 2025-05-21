@@ -15,5 +15,6 @@ public class ProductProjection {
     private Long id;
     private String name;
     private BigDecimal price;
+    private Integer stock;
 
 }

@@ -1,4 +1,4 @@
-package com.minh.shopee.domain.dto.request;
+package com.minh.shopee.domain.dto.request.filters;
 
 import java.util.Optional;
 
@@ -16,5 +16,6 @@ public class FiltersProduct {
     
     private Optional<String> stock;
     private Optional<String> categoryId;
+    private Optional<String> sortBy;
 
 }
