@@ -35,7 +35,7 @@ public class Product extends BaseEntity {
     private Integer stock;
 
     @OneToMany(mappedBy = "product")
-    @JsonIgnore
+    // @JsonIgnore
     private List<ProductImage> images;
 
     @ManyToOne

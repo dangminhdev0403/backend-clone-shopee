@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.minh.shopee.domain.dto.request.FiltersProduct;
 import com.minh.shopee.domain.dto.request.ProductReqDTO;
 import com.minh.shopee.domain.dto.response.products.ProductResDTO;
 import com.minh.shopee.domain.model.Product;
@@ -57,9 +58,12 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<Page<Product>> searchProducts(@RequestParam("keyword") String keyword,
+    public ResponseEntity<Page<ProductResDTO>> searchProducts(@RequestParam("keyword") String keyword,
+            FiltersProduct filter,
             Pageable pageable) {
-        Page<Product> products = productSerivce.searchProducts(keyword, pageable);
+                            
+        Page<ProductResDTO> products = productSerivce.searchProducts(keyword,filter, pageable);
+
         return ResponseEntity.ok(products);
     }
 

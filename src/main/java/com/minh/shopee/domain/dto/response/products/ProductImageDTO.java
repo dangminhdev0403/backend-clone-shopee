@@ -1,7 +1,5 @@
 package com.minh.shopee.domain.dto.response.products;
 
-import java.math.BigDecimal;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,11 +7,8 @@ import lombok.Getter;
 @Builder
 @Getter
 @AllArgsConstructor
-public class ProductResDTO {
-    private String name;
-    private BigDecimal price;
+public class ProductImageDTO {
+    
     private String imageUrl;
-    private String description;
-    private Integer stock;
 
 }
