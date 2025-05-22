@@ -13,6 +13,8 @@ public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpec
 
     <T> Set<T> findAllBy(Class<T> type);
 
+    <T> Page<T> findAllBy(Pageable pageable, Class<T> type);
+
     @SuppressWarnings("null")
     Page<Product> findAll(Pageable pageable);
 

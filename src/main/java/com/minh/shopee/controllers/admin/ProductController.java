@@ -18,7 +18,6 @@ import com.minh.shopee.domain.dto.request.ProductReqDTO;
 import com.minh.shopee.domain.dto.request.filters.FiltersProduct;
 import com.minh.shopee.domain.dto.request.filters.SortFilter;
 import com.minh.shopee.domain.dto.response.products.ProductResDTO;
-import com.minh.shopee.domain.model.Product;
 import com.minh.shopee.services.ProductSerivce;
 
 import jakarta.validation.Valid;
@@ -52,9 +51,9 @@ public class ProductController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Page<Product>> getAllProducts(Pageable pageable) {
+    public ResponseEntity<Page<ProductResDTO>> getAllProducts(Pageable pageable) {
 
-        Page<Product> products = productSerivce.getAllProducts(pageable);
+        Page<ProductResDTO> products = productSerivce.getAllProducts(pageable);
         return ResponseEntity.ok(products);
     }
 

@@ -56,8 +56,29 @@ public class ProductServiceImpl implements ProductSerivce {
     }
 
     @Override
-    public Page<Product> getAllProducts(Pageable pageable) {
-        return productRepository.findAll(pageable);
+    public Page<ProductResDTO> getAllProducts(Pageable pageable) {
+        Page<ProductProjection> products = this.productRepository.findAllBy(pageable, ProductProjection.class);
+        List<ProductProjection> productList = products.getContent();
+
+        List<ProductResDTO> dtoList = productList.stream()
+                .map(product -> {
+                    Optional<ProductImageDTO> firstImageOpt = this.productImageCustomRepo.findOne(
+                            ProductImageSpecs.findFirstImageByProductId(product.getId()),
+                            ProductImageDTO.class);
+
+                    String imageUrl = firstImageOpt.map(ProductImageDTO::getImageUrl).orElse(null);
+                    return ProductResDTO.builder()
+                            .name(product.getName())
+                            .price(product.getPrice())
+                            .imageUrl(imageUrl)
+                            .stock(product.getStock())
+                            .build();
+                }).toList();
+
+        return new PageImpl<>(
+                dtoList,
+                pageable,
+                products.getTotalElements());
     }
 
     @Override
@@ -209,4 +230,5 @@ public class ProductServiceImpl implements ProductSerivce {
         }
         return spec;
     }
+
 }

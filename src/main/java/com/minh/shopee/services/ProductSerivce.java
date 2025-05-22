@@ -17,7 +17,7 @@ public interface ProductSerivce {
 
   <T> Set<T> getAllProducts(Class<T> type);
 
-  Page<Product> getAllProducts(Pageable pageable);
+  Page<ProductResDTO> getAllProducts(Pageable pageable);
 
   Page<ProductResDTO> searchProducts(String keyword, FiltersProduct filter , SortFilter sortFilte ,Pageable pageable);
 
