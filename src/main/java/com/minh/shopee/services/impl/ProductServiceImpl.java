@@ -68,6 +68,44 @@ public class ProductServiceImpl implements ProductSerivce {
 
                     String imageUrl = firstImageOpt.map(ProductImageDTO::getImageUrl).orElse(null);
                     return ProductResDTO.builder()
+                            .id(product.getId())
+                            .name(product.getName())
+                            .price(product.getPrice())
+                            .imageUrl(imageUrl)
+                            .stock(product.getStock())
+                            .build();
+                }).toList();
+
+        return new PageImpl<>(
+                dtoList,
+                pageable,
+                products.getTotalElements());
+    }
+
+    @Override
+    public Page<ProductResDTO> searchProducts(String keyword, FiltersProduct filter, SortFilter sortFilter,
+            Pageable pageable) {
+        pageable = applySortFromFilter(pageable, sortFilter);
+        Specification<Product> spec = buildProductSpecification(keyword, filter);
+
+        log.info("getingg list product width filter: {}");
+        Page<ProductProjection> products = this.productCustomRepo.findAll(
+                spec,
+                pageable,
+                ProductProjection.class);
+        List<ProductProjection> productList = products.getContent();
+
+        // Map từng Product sang ProductResDTO, tìm image đầu tiên theo productId
+        log.info("Mapping product to ProductResDTO, find image first by productId");
+        List<ProductResDTO> dtoList = productList.stream()
+                .map(product -> {
+                    Optional<ProductImageDTO> firstImageOpt = this.productImageCustomRepo.findOne(
+                            ProductImageSpecs.findFirstImageByProductId(product.getId()),
+                            ProductImageDTO.class);
+
+                    String imageUrl = firstImageOpt.map(ProductImageDTO::getImageUrl).orElse(null);
+                    return ProductResDTO.builder()
+                            .id(product.getId())
                             .name(product.getName())
                             .price(product.getPrice())
                             .imageUrl(imageUrl)
@@ -147,42 +185,6 @@ public class ProductServiceImpl implements ProductSerivce {
             e.printStackTrace();
         }
 
-    }
-
-    @Override
-    public Page<ProductResDTO> searchProducts(String keyword, FiltersProduct filter, SortFilter sortFilter,
-            Pageable pageable) {
-        pageable = applySortFromFilter(pageable, sortFilter);
-        Specification<Product> spec = buildProductSpecification(keyword, filter);
-
-        log.info("getingg list product width filter: {}");
-        Page<ProductProjection> products = this.productCustomRepo.findAll(
-                spec,
-                pageable,
-                ProductProjection.class);
-        List<ProductProjection> productList = products.getContent();
-
-        // Map từng Product sang ProductResDTO, tìm image đầu tiên theo productId
-        log.info("Mapping product to ProductResDTO, find image first by productId");
-        List<ProductResDTO> dtoList = productList.stream()
-                .map(product -> {
-                    Optional<ProductImageDTO> firstImageOpt = this.productImageCustomRepo.findOne(
-                            ProductImageSpecs.findFirstImageByProductId(product.getId()),
-                            ProductImageDTO.class);
-
-                    String imageUrl = firstImageOpt.map(ProductImageDTO::getImageUrl).orElse(null);
-                    return ProductResDTO.builder()
-                            .name(product.getName())
-                            .price(product.getPrice())
-                            .imageUrl(imageUrl)
-                            .stock(product.getStock())
-                            .build();
-                }).toList();
-
-        return new PageImpl<>(
-                dtoList,
-                pageable,
-                products.getTotalElements());
     }
 
     private Pageable applySortFromFilter(Pageable pageable, SortFilter sortFilter) {

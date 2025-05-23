@@ -10,6 +10,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class ProductResDTO {
+    private Long id;
     private String name;
     private BigDecimal price;
     private String imageUrl;

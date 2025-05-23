@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -51,7 +52,7 @@ public class ProductController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Page<ProductResDTO>> getAllProducts(Pageable pageable) {
+    public ResponseEntity<Page<ProductResDTO>> getAllProducts( @PageableDefault(page = 0, size = 20) Pageable pageable) {
 
         Page<ProductResDTO> products = productSerivce.getAllProducts(pageable);
         return ResponseEntity.ok(products);
@@ -62,7 +63,7 @@ public class ProductController {
             @RequestParam(value = "keyword", required = false) String keyword,
             FiltersProduct filter, SortFilter sortFilter,
             Pageable pageable) {
-
+                
         Page<ProductResDTO> products = productSerivce.searchProducts(keyword, filter, sortFilter, pageable);
 
         return ResponseEntity.ok(products);
