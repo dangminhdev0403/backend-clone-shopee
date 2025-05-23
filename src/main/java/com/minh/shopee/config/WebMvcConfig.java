@@ -23,6 +23,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("file:" + Paths.get(uploadDir).toAbsolutePath().toUri());
     }
 
+    @SuppressWarnings("null")
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         PageableHandlerMethodArgumentResolver pageableResolver = new PageableHandlerMethodArgumentResolver();
