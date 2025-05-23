@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -100,21 +102,21 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public <T> List<T> getListProvinces(Class<T> type) {
+    public <T> Page<T> getListProvinces(Class<T> type , Pageable pageable) {
         log.debug("Fetching list of provinces with projection type: {}", type.getSimpleName());
-        return this.provinceRepository.findAllBy(type);
+        return this.provinceRepository.findAllBy(type, pageable);
     }
 
     @Override
-    public <T> List<T> getListDistricts(Long provinceId, Class<T> type) {
+    public <T> Page<T> getListDistricts(Long provinceId, Class<T> type ,Pageable pageable) {
         log.debug("Fetching list of districts with projection type: {}", type.getSimpleName());
-        return this.districtRepository.findByProvinceId(provinceId, type);
+        return this.districtRepository.findByProvinceId(provinceId, type, pageable);
     }
 
     @Override
-    public <T> List<T> getListWards(Long provinceId, Class<T> type) {
+    public <T> Page<T> getListWards(Long provinceId, Class<T> type ,Pageable pageable) {
         log.debug("Fetching list of wards with projection type: {}", type.getSimpleName());
-        return this.wardRepository.findByDistrictId(provinceId, type);
+        return this.wardRepository.findByDistrictId(provinceId, type, pageable);
     }
 
 }

@@ -1,8 +1,9 @@
 package com.minh.shopee.services;
 
 import java.io.IOException;
-import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface LocationService {
@@ -10,10 +11,10 @@ public interface LocationService {
 
     void deleteAllLocations();
 
-    <T> List<T> getListProvinces(Class<T> type);
+    <T> Page<T> getListProvinces(Class<T> type , Pageable pageable);
 
-    <T> List<T> getListDistricts(Long provinceId, Class<T> type);
+    <T> Page<T> getListDistricts(Long provinceId, Class<T> type, Pageable pageable);
 
-    <T> List<T> getListWards(Long provinceId, Class<T> type);
+    <T> Page<T> getListWards(Long provinceId, Class<T> type, Pageable pageable);
 
 }

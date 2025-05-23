@@ -1,9 +1,11 @@
 package com.minh.shopee.controllers.location;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,30 +42,31 @@ public class LocationController {
     }
 
     @GetMapping("/provinces")
-    public ResponseEntity<List<LocationDTO>> getAllProvinces() {
-        List<LocationDTO> provinces = this.locationService.getListProvinces(LocationDTO.class);
+    public ResponseEntity<Page<LocationDTO>> getAllProvinces(@PageableDefault(page = 0, size = 20) Pageable pageable) {
+        Page<LocationDTO> provinces = this.locationService.getListProvinces(LocationDTO.class, pageable);
         return ResponseEntity.ok().body(provinces);
     }
 
     @GetMapping("/districts")
-    public ResponseEntity<List<LocationDTO>> getListDistrictsWithProvince(Optional<String> provinceId) {
+    public ResponseEntity<Page<LocationDTO>> getListDistrictsWithProvince(Optional<String> provinceId,
+            Pageable pageable) {
         if (provinceId.isEmpty()) {
             throw new AppException(400, "Param  is required", "provinceId is required");
         }
 
-        List<LocationDTO> districts = this.locationService.getListDistricts(Long.parseLong(provinceId.get()),
-                LocationDTO.class);
+        Page<LocationDTO> districts = this.locationService.getListDistricts(Long.parseLong(provinceId.get()),
+                LocationDTO.class, pageable);
         return ResponseEntity.ok().body(districts);
 
     }
 
     @GetMapping("/wards")
-    public ResponseEntity<List<LocationDTO>> getListWardsWithDistrict(Optional<String> districtId) {
+    public ResponseEntity<Page<LocationDTO>> getListWardsWithDistrict(Optional<String> districtId, Pageable pageable) {
         if (districtId.isEmpty()) {
             throw new AppException(400, "Param  is required", "districtId is required");
         }
-        List<LocationDTO> wards = this.locationService.getListWards(Long.parseLong(districtId.get()),
-                LocationDTO.class);
+        Page<LocationDTO> wards = this.locationService.getListWards(Long.parseLong(districtId.get()),
+                LocationDTO.class, pageable);
         return ResponseEntity.ok().body(wards);
 
     }
