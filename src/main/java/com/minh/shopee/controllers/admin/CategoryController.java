@@ -1,8 +1,10 @@
 package com.minh.shopee.controllers.admin;
 
 import java.io.IOException;
-import java.util.Set;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +32,8 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping()
-    public ResponseEntity<Set<CategoryDTO>> getAllCategories() {
-        Set<CategoryDTO> categories = this.categoryService.getAllCategories(CategoryDTO.class);
+    public ResponseEntity<Page<CategoryDTO>> getAllCategories(@PageableDefault(page = 0, size = 20) Pageable pageable) {
+        Page<CategoryDTO> categories = this.categoryService.getAllCategories(CategoryDTO.class, pageable);
 
         return ResponseEntity.ok(categories);
     }

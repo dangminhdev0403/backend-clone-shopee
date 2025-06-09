@@ -66,10 +66,10 @@ public class AuthController {
         log.debug("Authentication successful for email: {}", userRequest.getEmail());
 
         UserDTO currentUser = this.userService.findByUsername(userRequest.getEmail(), UserDTO.class);
-
+        long id = currentUser.getId();
         String email = currentUser.getEmail();
         String name = currentUser.getName();
-        ResLoginDTO.UserLogin userLogin = ResLoginDTO.UserLogin.builder().email(email).name(name).build();
+        ResLoginDTO.UserLogin userLogin = ResLoginDTO.UserLogin.builder().email(email).name(name).id(id).build();
 
         String accessToken = this.securityUtils.createAccessToken(userRequest.getEmail(), userLogin);
         log.debug("Access token generated for user: {}", email);
@@ -123,7 +123,7 @@ public class AuthController {
         UserDTO currentUser = this.userService.findByEmailAndRefreshToken(email, tokenValue, UserDTO.class);
 
         ResLoginDTO.UserLogin userLogin = ResLoginDTO.UserLogin.builder()
-                .email(email).name(currentUser.getName()).build();
+                .email(email).name(currentUser.getName()).id(currentUser.getId()).build();
         String accessToken = this.securityUtils.createAccessToken(email, userLogin);
         ResLoginDTO resLoginDTO = ResLoginDTO.builder().user(userLogin).accessToken(accessToken).build();
 
@@ -162,6 +162,7 @@ public class AuthController {
 
         Jwt decodedToken = this.securityUtils.checkValidRefreshToken(refreshToken.get());
         String email = decodedToken.getSubject();
+
         log.debug("Refresh token validated during logout for user: {}", email);
 
         this.userService.updateRefreshToken(email, null);

@@ -3,8 +3,9 @@ package com.minh.shopee.services.impl;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,9 +27,9 @@ public class CategoryServiceImpl implements CategoryService {
     private final ExcelHelper excelHelper;
 
     @Override
-    public <T> Set<T> getAllCategories(Class<T> type) {
-        log.info("Fetching list of categories with projection type: {}", type.getSimpleName());
-        return this.categoryRepository.findAllBy(type);
+    public <T> Page<T> getAllCategories(Class<T> type, Pageable pageable) {
+        log.info("Fetching list of categories with projection type ok: {}", type.getSimpleName());
+        return this.categoryRepository.findAllBy(type, pageable);
 
     }
 

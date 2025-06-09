@@ -1,5 +1,6 @@
 package com.minh.shopee.repository;
 
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.data.domain.Page;
@@ -17,5 +18,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpec
 
     @SuppressWarnings("null")
     Page<Product> findAll(Pageable pageable);
+
+    <T> Optional<T> findById(Long id, Class<T> type);
 
 }

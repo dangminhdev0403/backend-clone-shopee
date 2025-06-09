@@ -40,4 +40,8 @@ public class Product extends BaseEntity {
     @ManyToOne
     private Category category;
 
+    @OneToMany(mappedBy = "product")
+    private List<CartDetail> cartDetails;
+
+    
 }

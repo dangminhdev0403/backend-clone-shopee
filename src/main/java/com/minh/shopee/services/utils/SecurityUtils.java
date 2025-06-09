@@ -112,6 +112,7 @@ public class SecurityUtils {
         NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withSecretKey(getRefreshTokenSecretKey())
                 .macAlgorithm(MAC_ALGORITHM).build();
         try {
+
             return jwtDecoder.decode(token);
         } catch (Exception e) {
             log.error("Refresh Token validation failed: {}", e.getMessage());

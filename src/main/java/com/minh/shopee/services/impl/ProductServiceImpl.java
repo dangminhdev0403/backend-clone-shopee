@@ -12,24 +12,33 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.minh.shopee.domain.constant.QuantityAction;
+import com.minh.shopee.domain.dto.request.AddProductDTO;
 import com.minh.shopee.domain.dto.request.ProductReqDTO;
 import com.minh.shopee.domain.dto.request.filters.FiltersProduct;
 import com.minh.shopee.domain.dto.request.filters.SortFilter;
 import com.minh.shopee.domain.dto.response.products.ProductImageDTO;
 import com.minh.shopee.domain.dto.response.products.ProductProjection;
 import com.minh.shopee.domain.dto.response.products.ProductResDTO;
+import com.minh.shopee.domain.model.Cart;
+import com.minh.shopee.domain.model.CartDetail;
 import com.minh.shopee.domain.model.Category;
 import com.minh.shopee.domain.model.Product;
 import com.minh.shopee.domain.model.ProductImage;
+import com.minh.shopee.domain.model.User;
 import com.minh.shopee.domain.specification.ProductImageSpecs;
 import com.minh.shopee.domain.specification.ProductSpecification;
+import com.minh.shopee.repository.CartDetailRepository;
+import com.minh.shopee.repository.CartRepository;
 import com.minh.shopee.repository.GenericRepositoryCustom;
 import com.minh.shopee.repository.ProductImageRepository;
 import com.minh.shopee.repository.ProductRepository;
 import com.minh.shopee.services.ProductSerivce;
+import com.minh.shopee.services.utils.error.AppException;
 import com.minh.shopee.services.utils.files.ExcelHelper;
 import com.minh.shopee.services.utils.files.UploadCloud;
 import com.minh.shopee.services.utils.files.data.ProductData;
@@ -48,6 +57,8 @@ public class ProductServiceImpl implements ProductSerivce {
     private final ExcelHelper excelHelper;
     private final GenericRepositoryCustom<Product> productCustomRepo;
     private final GenericRepositoryCustom<ProductImage> productImageCustomRepo;
+    private final CartDetailRepository cartDetailRepository;
+    private final CartRepository cartRepository;
 
     @Override
     public <T> Set<T> getAllProducts(Class<T> type) {
@@ -231,6 +242,67 @@ public class ProductServiceImpl implements ProductSerivce {
             }
         }
         return spec;
+    }
+
+    @Override
+    public <T> T getProductById(long id, Class<T> type) {
+        log.info("Fetching product by id: {} with projection type: {}", id, type.getSimpleName());
+        Optional<T> product = this.productRepository.findById(id, type);
+        if (product.isEmpty()) {
+            log.error("Product not found with id: {}", id);
+            throw new AppException(HttpStatus.NOT_FOUND.value(), "Product not found",
+                    "Product with id " + id + " not found");
+        }
+        return product.get();
+    }
+
+    @Override
+    public void addProductToCart(AddProductDTO productReq, Long userId) {
+        Product productDB = this.productRepository.findById(productReq.getProductId()).orElse(null);
+        if (productDB == null) {
+            log.error("Product not found with id: {}", productReq.getProductId());
+            throw new AppException(HttpStatus.NOT_FOUND.value(), "Product not found",
+                    "Product with id " + productReq.getProductId() + " not found");
+        }
+        Cart isExistCart = this.cartRepository.findByUserId(userId).orElse(null);
+
+        if (isExistCart == null) {
+            log.info("Cart not found , create cart with user id: {}", userId);
+            Cart cart = new Cart();
+            User user = new User();
+            user.setId(userId);
+            cart.setUser(user);
+            this.cartRepository.save(cart);
+
+            CartDetail cartDetail = CartDetail.builder().quantity(productReq.getQuantity())
+                    .product(productDB).cart(cart).build();
+            cartDetailRepository.save(cartDetail);
+            return;
+        }
+
+        CartDetail cartDetail = this.cartDetailRepository.findByCartIdAndProductId(isExistCart.getId(),
+                productReq.getProductId());
+
+        if (cartDetail != null) {
+            if (productReq.getAction() == QuantityAction.INCREASE) {
+                cartDetail.setQuantity(cartDetail.getQuantity() + productReq.getQuantity());
+            } else if (productReq.getAction() == QuantityAction.DECREASE) {
+                if (productReq.getQuantity() > cartDetail.getQuantity()) {
+                    throw new AppException(HttpStatus.BAD_REQUEST.value(), "Quantity is not enough",
+                            "Quantity is not enough");
+                }
+                if (productReq.getQuantity() - cartDetail.getQuantity() == 0) {
+                    this.cartDetailRepository.delete(cartDetail);
+                    return;
+                }
+                cartDetail.setQuantity(cartDetail.getQuantity() - productReq.getQuantity());
+            }
+
+            this.cartDetailRepository.save(cartDetail);
+        } else {
+            throw new AppException(HttpStatus.BAD_REQUEST.value(), "Product not found in cart",
+                    "Product with id " + productReq.getProductId() + " not found in cart");
+        }
     }
 
 }
