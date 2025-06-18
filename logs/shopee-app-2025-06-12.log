@@ -1,0 +1,4 @@
+2025-06-12 02:07:49 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 20040 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\backend-clone-shopee)
+2025-06-12 02:07:49 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-12 02:07:49 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-12 02:08:01 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 12.174 seconds (process running for 12.79)
