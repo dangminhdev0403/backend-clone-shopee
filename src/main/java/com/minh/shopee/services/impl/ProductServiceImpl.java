@@ -17,10 +17,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.minh.shopee.domain.constant.QuantityAction;
+import com.minh.shopee.domain.dto.mappers.CartMapper;
 import com.minh.shopee.domain.dto.request.AddProductDTO;
 import com.minh.shopee.domain.dto.request.ProductReqDTO;
 import com.minh.shopee.domain.dto.request.filters.FiltersProduct;
 import com.minh.shopee.domain.dto.request.filters.SortFilter;
+import com.minh.shopee.domain.dto.response.carts.CartDTO;
 import com.minh.shopee.domain.dto.response.products.ProductImageDTO;
 import com.minh.shopee.domain.dto.response.products.ProductProjection;
 import com.minh.shopee.domain.dto.response.products.ProductResDTO;
@@ -258,30 +260,21 @@ public class ProductServiceImpl implements ProductSerivce {
 
     @Override
     public void addProductToCart(AddProductDTO productReq, Long userId) {
-        Product productDB = this.productRepository.findById(productReq.getProductId()).orElse(null);
-        if (productDB == null) {
-            log.error("Product not found with id: {}", productReq.getProductId());
-            throw new AppException(HttpStatus.NOT_FOUND.value(), "Product not found",
-                    "Product with id " + productReq.getProductId() + " not found");
-        }
-        Cart isExistCart = this.cartRepository.findByUserId(userId).orElse(null);
+        Product productDB = this.productRepository.findById(productReq.getProductId())
+                .orElseThrow(() -> new AppException(HttpStatus.NOT_FOUND.value(), "Product not found",
+                        "Product with id " + productReq.getProductId() + " not found"));
 
-        if (isExistCart == null) {
-            log.info("Cart not found , create cart with user id: {}", userId);
-            Cart cart = new Cart();
+        Cart cart = this.cartRepository.findByUserId(userId).orElseGet(() -> {
+            log.info("Cart not found, creating new cart for user id: {}", userId);
+            Cart newCart = new Cart();
             User user = new User();
             user.setId(userId);
-            cart.setUser(user);
-            this.cartRepository.save(cart);
+            newCart.setUser(user);
+            return this.cartRepository.save(newCart);
+        });
 
-            CartDetail cartDetail = CartDetail.builder().quantity(productReq.getQuantity())
-                    .product(productDB).cart(cart).build();
-            cartDetailRepository.save(cartDetail);
-            return;
-        }
-
-        CartDetail cartDetail = this.cartDetailRepository.findByCartIdAndProductId(isExistCart.getId(),
-                productReq.getProductId());
+        CartDetail cartDetail = this.cartDetailRepository
+                .findByCartIdAndProductId(cart.getId(), productReq.getProductId());
 
         if (cartDetail != null) {
             if (productReq.getAction() == QuantityAction.INCREASE) {
@@ -291,18 +284,39 @@ public class ProductServiceImpl implements ProductSerivce {
                     throw new AppException(HttpStatus.BAD_REQUEST.value(), "Quantity is not enough",
                             "Quantity is not enough");
                 }
-                if (productReq.getQuantity() - cartDetail.getQuantity() == 0) {
+                int newQty = cartDetail.getQuantity() - productReq.getQuantity();
+                if (newQty == 0) {
                     this.cartDetailRepository.delete(cartDetail);
                     return;
                 }
-                cartDetail.setQuantity(cartDetail.getQuantity() - productReq.getQuantity());
+                cartDetail.setQuantity(newQty);
             }
 
             this.cartDetailRepository.save(cartDetail);
         } else {
-            throw new AppException(HttpStatus.BAD_REQUEST.value(), "Product not found in cart",
-                    "Product with id " + productReq.getProductId() + " not found in cart");
+            // ❗ Sửa phần này: cho phép thêm sản phẩm mới nếu action là INCREASE
+            if (productReq.getAction() == QuantityAction.INCREASE) {
+                CartDetail newDetail = CartDetail.builder()
+                        .quantity(productReq.getQuantity())
+                        .product(productDB)
+                        .cart(cart)
+                        .build();
+                this.cartDetailRepository.save(newDetail);
+            } else {
+                throw new AppException(HttpStatus.BAD_REQUEST.value(), "Product not in cart",
+                        "Cannot decrease product that is not in cart");
+            }
         }
+    }
+
+    @Override
+    public CartDTO getCart(Long userId) {
+
+        Cart cart = this.cartRepository.findByUserId(userId)
+                .orElseThrow(() -> new AppException(HttpStatus.NOT_FOUND.value(), "Cart not found",
+                        "Cart for user with id " + userId + " not found"));
+
+        return CartMapper.toCartDTO(cart);
     }
 
 }

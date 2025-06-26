@@ -11,6 +11,7 @@ import com.minh.shopee.domain.dto.request.AddProductDTO;
 import com.minh.shopee.domain.dto.request.ProductReqDTO;
 import com.minh.shopee.domain.dto.request.filters.FiltersProduct;
 import com.minh.shopee.domain.dto.request.filters.SortFilter;
+import com.minh.shopee.domain.dto.response.carts.CartDTO;
 import com.minh.shopee.domain.dto.response.products.ProductResDTO;
 
 public interface ProductSerivce {
@@ -28,4 +29,6 @@ public interface ProductSerivce {
   void createListProduct(MultipartFile file);
 
   void addProductToCart(AddProductDTO productReq, Long userId);
+
+  CartDTO getCart(Long userId);
 }

@@ -24,7 +24,9 @@ import com.minh.shopee.domain.dto.request.AddProductDTO;
 import com.minh.shopee.domain.dto.request.ProductReqDTO;
 import com.minh.shopee.domain.dto.request.filters.FiltersProduct;
 import com.minh.shopee.domain.dto.request.filters.SortFilter;
+import com.minh.shopee.domain.dto.response.carts.CartDTO;
 import com.minh.shopee.domain.dto.response.products.ProductResDTO;
+import com.minh.shopee.domain.model.Cart;
 import com.minh.shopee.domain.model.Product;
 import com.minh.shopee.services.ProductSerivce;
 import com.minh.shopee.services.utils.error.AppException;
@@ -99,4 +101,17 @@ public class ProductController {
         throw new AppException(400, "Không thể thêm sản phẩm vào giỏ hàng", null);
     }
 
+    @GetMapping("/get-cart")
+    public ResponseEntity<CartDTO> getCart() {
+        JwtAuthenticationToken auth = (JwtAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> userClaim = auth.getToken().getClaim("user");
+        if (userClaim != null && userClaim.containsKey("id")) {
+            String userId = userClaim.get("id").toString();
+            Long userIdLong = Long.valueOf(userId);
+            CartDTO cart = productSerivce.getCart(userIdLong);
+
+            return ResponseEntity.ok(cart);
+        }
+        throw new AppException(400, "Không thể lấy giỏ hàng", null);
+    }
 }

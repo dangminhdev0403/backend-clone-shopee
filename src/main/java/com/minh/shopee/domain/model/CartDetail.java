@@ -1,5 +1,7 @@
 package com.minh.shopee.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +27,8 @@ public class CartDetail {
     private Long id;
 
     @ManyToOne
+    @JsonIgnore // 👈 thêm dòng này
+
     private Cart cart;
 
     private Integer quantity;
