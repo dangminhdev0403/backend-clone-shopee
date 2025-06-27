@@ -263,6 +263,7 @@ public class ProductServiceImpl implements ProductSerivce {
         Product productDB = this.productRepository.findById(productReq.getProductId())
                 .orElseThrow(() -> new AppException(HttpStatus.NOT_FOUND.value(), "Product not found",
                         "Product with id " + productReq.getProductId() + " not found"));
+        int stockProduct = productDB.getStock();
 
         Cart cart = this.cartRepository.findByUserId(userId).orElseGet(() -> {
             log.info("Cart not found, creating new cart for user id: {}", userId);
@@ -278,7 +279,12 @@ public class ProductServiceImpl implements ProductSerivce {
 
         if (cartDetail != null) {
             if (productReq.getAction() == QuantityAction.INCREASE) {
-                cartDetail.setQuantity(cartDetail.getQuantity() + productReq.getQuantity());
+                int quantity = cartDetail.getQuantity() + productReq.getQuantity();
+                if (quantity > stockProduct) {
+                    throw new AppException(HttpStatus.BAD_REQUEST.value(), "Quantity exceeds stock",
+                            "Không thể tăng số lượng vượt quá giới hạn hàng tồn kho");
+                }
+                cartDetail.setQuantity(quantity);
             } else if (productReq.getAction() == QuantityAction.DECREASE) {
                 if (productReq.getQuantity() > cartDetail.getQuantity()) {
                     throw new AppException(HttpStatus.BAD_REQUEST.value(), "Quantity is not enough",
