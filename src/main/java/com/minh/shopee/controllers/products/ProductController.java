@@ -10,6 +10,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +27,6 @@ import com.minh.shopee.domain.dto.request.filters.FiltersProduct;
 import com.minh.shopee.domain.dto.request.filters.SortFilter;
 import com.minh.shopee.domain.dto.response.carts.CartDTO;
 import com.minh.shopee.domain.dto.response.products.ProductResDTO;
-import com.minh.shopee.domain.model.Cart;
 import com.minh.shopee.domain.model.Product;
 import com.minh.shopee.services.ProductSerivce;
 import com.minh.shopee.services.utils.error.AppException;
@@ -114,4 +114,25 @@ public class ProductController {
         }
         throw new AppException(400, "Không thể lấy giỏ hàng", null);
     }
+
+    @DeleteMapping("/remove-from-cart")
+    public ResponseEntity<String> removeFromCart(@RequestBody AddProductDTO productReq) {
+        Long productIdLong = productReq.getProductId();
+
+        if (productIdLong == null || productIdLong <= 0) {
+            throw new AppException(400, "Product ID is invalid", "Invalid product ID");
+        }
+
+        JwtAuthenticationToken auth = (JwtAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> userClaim = auth.getToken().getClaim("user");
+
+        if (userClaim != null && userClaim.containsKey("id")) {
+            Long userIdLong = Long.valueOf(userClaim.get("id").toString());
+            this.productSerivce.removeFromCart(productIdLong, userIdLong);
+            return ResponseEntity.ok("Xoá sản phẩm khỏi giỏ hàng thành công");
+        }
+
+        throw new AppException(400, "Unable to remove product from cart", "Không thể xoá sản phẩm khỏi giỏ hàng");
+    }
+
 }

@@ -31,4 +31,6 @@ public interface ProductSerivce {
   void addProductToCart(AddProductDTO productReq, Long userId);
 
   CartDTO getCart(Long userId);
+
+  void removeFromCart(long productId, Long userId);
 }

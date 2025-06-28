@@ -1,9 +1,9 @@
-2025-06-27 14:36:32 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 16272 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
-2025-06-27 14:36:32 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
-2025-06-27 14:36:32 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-27 14:37:14 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 45.703 seconds (process running for 48.678)
-2025-06-27 14:37:25 ERROR c.m.shopee.config.JWTConfiguration - JWT Decode Error: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-26T16:48:24Z
-org.springframework.security.oauth2.jwt.JwtValidationException: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-26T16:48:24Z
+2025-06-28 07:34:03 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 07:34:03 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 07:34:03 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 07:34:36 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 35.203 seconds (process running for 37.645)
+2025-06-28 07:34:41 ERROR c.m.shopee.config.JWTConfiguration - JWT Decode Error: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-27T08:37:44Z
+org.springframework.security.oauth2.jwt.JwtValidationException: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-27T08:37:44Z
 	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.validateJwt(NimbusJwtDecoder.java:193)
 	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.decode(NimbusJwtDecoder.java:139)
 	at com.minh.shopee.config.JWTConfiguration.lambda$0(JWTConfiguration.java:64)
@@ -93,8 +93,8 @@ org.springframework.security.oauth2.jwt.JwtValidationException: An error occurre
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:842)
-2025-06-27 14:37:25 ERROR c.m.shopee.config.JWTConfiguration - JWT Decode Error: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-26T16:48:24Z
-org.springframework.security.oauth2.jwt.JwtValidationException: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-26T16:48:24Z
+2025-06-28 07:34:41 ERROR c.m.shopee.config.JWTConfiguration - JWT Decode Error: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-27T08:37:44Z
+org.springframework.security.oauth2.jwt.JwtValidationException: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-27T08:37:44Z
 	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.validateJwt(NimbusJwtDecoder.java:193)
 	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.decode(NimbusJwtDecoder.java:139)
 	at com.minh.shopee.config.JWTConfiguration.lambda$0(JWTConfiguration.java:64)
@@ -184,44 +184,168 @@ org.springframework.security.oauth2.jwt.JwtValidationException: An error occurre
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:842)
-2025-06-27 14:45:33 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 16272 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
-2025-06-27 14:45:33 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
-2025-06-27 14:45:33 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-27 14:46:03 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 32.217 seconds (process running for 577.427)
-2025-06-27 14:47:19 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 16272 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
-2025-06-27 14:47:19 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
-2025-06-27 14:47:19 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-27 14:47:42 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 22.788 seconds (process running for 675.851)
-2025-06-27 14:49:06 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 16272 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
-2025-06-27 14:49:06 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
-2025-06-27 14:49:06 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-27 14:49:35 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 28.874 seconds (process running for 789.394)
-2025-06-27 14:50:53 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 16272 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
-2025-06-27 14:50:53 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
-2025-06-27 14:50:53 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-27 14:51:07 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 14.08 seconds (process running for 881.309)
-2025-06-27 14:51:30 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 16272 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
-2025-06-27 14:51:30 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
-2025-06-27 14:51:30 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-27 14:52:14 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 44.384 seconds (process running for 948.623)
-2025-06-27 14:52:30 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 16272 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
-2025-06-27 14:52:30 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
-2025-06-27 14:52:30 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-27 14:52:45 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 14.999 seconds (process running for 979.086)
-2025-06-27 14:57:55 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 16272 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
-2025-06-27 14:57:55 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
-2025-06-27 14:57:55 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-27 14:58:06 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 11.77 seconds (process running for 1300.621)
-2025-06-27 14:58:16 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 16272 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
-2025-06-27 14:58:16 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
-2025-06-27 14:58:16 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-27 14:58:53 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 36.733 seconds (process running for 1347.006)
-2025-06-27 14:59:01 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 16272 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
-2025-06-27 14:59:01 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
-2025-06-27 14:59:01 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-27 14:59:48 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 47.424 seconds (process running for 1402.648)
-2025-06-27 15:00:39 ERROR c.m.shopee.config.JWTConfiguration - JWT Decode Error: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-26T09:36:53Z
-org.springframework.security.oauth2.jwt.JwtValidationException: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-26T09:36:53Z
+2025-06-28 08:03:50 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:03:50 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:03:50 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:04:11 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:04:11 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:04:11 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:04:15 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:04:15 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:04:15 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:04:31 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:04:31 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:04:31 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:04:43 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 12.639 seconds (process running for 1844.887)
+2025-06-28 08:05:30 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:05:30 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:05:31 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:05:44 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 13.865 seconds (process running for 1904.983)
+2025-06-28 08:06:00 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:06:00 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:06:00 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:06:08 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:06:08 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:06:08 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:06:13 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 5.093 seconds (process running for 1934.944)
+2025-06-28 08:06:28 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:06:28 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:06:28 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:06:32 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 3.964 seconds (process running for 1953.761)
+2025-06-28 08:06:40 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:06:40 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:06:40 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:06:50 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 9.572 seconds (process running for 1971.174)
+2025-06-28 08:06:56 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:06:56 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:06:56 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:07:05 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 8.846 seconds (process running for 1986.052)
+2025-06-28 08:08:59 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:08:59 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:08:59 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:09:12 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 13.411 seconds (process running for 2113.738)
+2025-06-28 08:09:15 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:09:15 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:09:15 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:09:18 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 3.671 seconds (process running for 2119.878)
+2025-06-28 08:10:16 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:10:16 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:10:16 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:10:25 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 9.934 seconds (process running for 2186.618)
+2025-06-28 08:10:35 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:10:35 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:10:35 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:10:40 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 4.54 seconds (process running for 2201.21)
+2025-06-28 08:10:53 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:10:53 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:10:53 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:10:56 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 3.234 seconds (process running for 2217.93)
+2025-06-28 08:11:03 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:11:03 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:11:03 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:11:07 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 4.321 seconds (process running for 2228.933)
+2025-06-28 08:11:25 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:11:25 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:11:25 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:11:28 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 3.566 seconds (process running for 2249.844)
+2025-06-28 08:13:13 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:13:13 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:13:13 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:13:22 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 8.704 seconds (process running for 2363.22)
+2025-06-28 08:13:26 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:13:27 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:13:27 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:13:39 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 12.768 seconds (process running for 2380.237)
+2025-06-28 08:13:42 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:13:42 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:13:42 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:13:51 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 8.37 seconds (process running for 2392.132)
+2025-06-28 08:13:58 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:13:58 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:13:58 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:14:01 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.831 seconds (process running for 2402.487)
+2025-06-28 08:16:20 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:16:20 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:16:20 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:16:24 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 3.651 seconds (process running for 2545.01)
+2025-06-28 08:16:30 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:16:30 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:16:30 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:16:34 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 3.954 seconds (process running for 2555.646)
+2025-06-28 08:16:42 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:16:42 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:16:42 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:16:44 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.223 seconds (process running for 2565.194)
+2025-06-28 08:16:49 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:16:49 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:16:49 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:16:51 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.023 seconds (process running for 2572.371)
+2025-06-28 08:24:40 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:24:40 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:24:40 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:24:42 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.371 seconds (process running for 3043.544)
+2025-06-28 08:25:02 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:25:02 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:25:02 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:25:05 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 3.214 seconds (process running for 3066.733)
+2025-06-28 08:25:20 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:25:20 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:25:20 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:25:23 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.728 seconds (process running for 3084.516)
+2025-06-28 08:25:30 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:25:30 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:25:30 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:25:33 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.923 seconds (process running for 3093.997)
+2025-06-28 08:25:42 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:25:42 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:25:42 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:25:49 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 6.766 seconds (process running for 3110.562)
+2025-06-28 08:25:59 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:25:59 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:25:59 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:26:04 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 5.261 seconds (process running for 3125.965)
+2025-06-28 08:26:15 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:26:15 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:26:15 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:26:17 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.008 seconds (process running for 3138.345)
+2025-06-28 08:26:33 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:26:33 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:26:33 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:26:40 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 6.855 seconds (process running for 3161.276)
+2025-06-28 08:26:51 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:26:51 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:26:51 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:26:53 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.806 seconds (process running for 3174.872)
+2025-06-28 08:27:09 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:27:09 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:27:09 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:27:15 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 5.833 seconds (process running for 3196.117)
+2025-06-28 08:27:41 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:27:41 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:27:41 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:27:43 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.378 seconds (process running for 3224.733)
+2025-06-28 08:27:49 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:27:49 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:27:49 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:27:52 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 2.847 seconds (process running for 3233.574)
+2025-06-28 08:29:11 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:29:11 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:29:11 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:29:20 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 9.252 seconds (process running for 3321.899)
+2025-06-28 08:29:29 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 3752 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:29:29 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:29:29 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:29:35 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 5.705 seconds (process running for 3336.48)
+2025-06-28 08:30:45 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 15972 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:30:45 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:30:45 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:31:10 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 26.504 seconds (process running for 28.699)
+2025-06-28 08:33:55 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 19552 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:33:55 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:33:55 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:34:16 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 22.751 seconds (process running for 23.995)
+2025-06-28 08:38:13 ERROR c.m.shopee.config.JWTConfiguration - JWT Decode Error: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-28T01:34:46Z
+org.springframework.security.oauth2.jwt.JwtValidationException: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-28T01:34:46Z
 	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.validateJwt(NimbusJwtDecoder.java:193)
 	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.decode(NimbusJwtDecoder.java:139)
 	at com.minh.shopee.config.JWTConfiguration.lambda$0(JWTConfiguration.java:64)
@@ -311,15 +435,208 @@ org.springframework.security.oauth2.jwt.JwtValidationException: An error occurre
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:842)
-2025-06-27 15:04:17 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 16272 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
-2025-06-27 15:04:17 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
-2025-06-27 15:04:17 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-27 15:04:35 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 18.486 seconds (process running for 1688.989)
-2025-06-27 15:04:59 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 16272 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
-2025-06-27 15:04:59 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
-2025-06-27 15:04:59 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-27 15:05:10 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 11.909 seconds (process running for 1724.625)
-2025-06-27 15:12:31 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 16272 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
-2025-06-27 15:12:31 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
-2025-06-27 15:12:31 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
-2025-06-27 15:12:51 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 21.552 seconds (process running for 2185.635)
+2025-06-28 08:38:13 ERROR c.m.shopee.config.JWTConfiguration - JWT Decode Error: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-28T01:34:46Z
+org.springframework.security.oauth2.jwt.JwtValidationException: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-28T01:34:46Z
+	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.validateJwt(NimbusJwtDecoder.java:193)
+	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.decode(NimbusJwtDecoder.java:139)
+	at com.minh.shopee.config.JWTConfiguration.lambda$0(JWTConfiguration.java:64)
+	at org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider.getJwt(JwtAuthenticationProvider.java:99)
+	at org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider.authenticate(JwtAuthenticationProvider.java:88)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:182)
+	at org.springframework.security.authentication.ObservationAuthenticationManager.lambda$authenticate$1(ObservationAuthenticationManager.java:54)
+	at io.micrometer.observation.Observation.observe(Observation.java:564)
+	at org.springframework.security.authentication.ObservationAuthenticationManager.authenticate(ObservationAuthenticationManager.java:53)
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:137)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2025-06-28 08:44:18 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 19552 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:44:18 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:44:18 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:44:33 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 16.143 seconds (process running for 640.995)
+2025-06-28 08:44:35 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 19552 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 08:44:35 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 08:44:35 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 08:44:40 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 4.615 seconds (process running for 647.341)
+2025-06-28 09:15:37 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 15072 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 09:15:37 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 09:15:37 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 09:16:32 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 56.449 seconds (process running for 58.399)
+2025-06-28 09:28:16 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 15072 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 09:28:16 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 09:28:16 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 09:28:35 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 19.383 seconds (process running for 781.546)
+2025-06-28 09:30:50 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 15072 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 09:30:50 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 09:30:50 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 09:31:07 INFO  com.minh.shopee.ShopeeApplication - Starting ShopeeApplication using Java 17.0.12 with PID 15072 (C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee\target\classes started by abcxy in C:\Users\abcxy\OneDrive\Desktop\workspace\project\shopee_clone\reactjs-clone-shopee\backend-clone-shopee)
+2025-06-28 09:31:07 DEBUG com.minh.shopee.ShopeeApplication - Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-06-28 09:31:07 INFO  com.minh.shopee.ShopeeApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-28 09:31:12 INFO  com.minh.shopee.ShopeeApplication - Started ShopeeApplication in 5.196 seconds (process running for 939.049)
+2025-06-28 09:31:17 ERROR c.m.shopee.config.JWTConfiguration - JWT Decode Error: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-28T02:21:10Z
+org.springframework.security.oauth2.jwt.JwtValidationException: An error occurred while attempting to decode the Jwt: Jwt expired at 2025-06-28T02:21:10Z
+	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.validateJwt(NimbusJwtDecoder.java:193)
+	at org.springframework.security.oauth2.jwt.NimbusJwtDecoder.decode(NimbusJwtDecoder.java:139)
+	at com.minh.shopee.config.JWTConfiguration.lambda$0(JWTConfiguration.java:64)
+	at org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider.getJwt(JwtAuthenticationProvider.java:99)
+	at org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider.authenticate(JwtAuthenticationProvider.java:88)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:182)
+	at org.springframework.security.authentication.ObservationAuthenticationManager.lambda$authenticate$1(ObservationAuthenticationManager.java:54)
+	at io.micrometer.observation.Observation.observe(Observation.java:564)
+	at org.springframework.security.authentication.ObservationAuthenticationManager.authenticate(ObservationAuthenticationManager.java:53)
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:137)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240)
+	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323)
+	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224)
+	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)

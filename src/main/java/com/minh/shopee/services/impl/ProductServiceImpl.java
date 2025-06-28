@@ -325,4 +325,21 @@ public class ProductServiceImpl implements ProductSerivce {
         return CartMapper.toCartDTO(cart);
     }
 
+    @Override
+    public void removeFromCart(long productId, Long userId) {
+        Cart cart = this.cartRepository.findByUserId(userId)
+                .orElseThrow(() -> new AppException(HttpStatus.NOT_FOUND.value(), "Cart not found",
+                        "Cart for user with id " + userId + " not found"));
+        CartDetail cartDetail = this.cartDetailRepository.findByCartIdAndProductId(cart.getId(), productId);
+        if (cartDetail != null) {
+            this.cartDetailRepository.delete(cartDetail);
+            log.info("Removed product with id {} from cart for user id {}", productId, userId);
+            return;
+        } else {
+            log.error("Cannot remove product with id {} that is not in cart for user id {}", productId, userId);
+            throw new AppException(HttpStatus.BAD_REQUEST.value(), "Product not in cart",
+                    "Cannot remove product that is not in cart");
+        }
+    }
+
 }
