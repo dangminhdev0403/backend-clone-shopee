@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -24,9 +25,11 @@ import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import com.minh.shopee.domain.dto.response.users.ResLoginDTO;
+import com.minh.shopee.services.utils.error.AppException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -173,4 +176,21 @@ public class SecurityUtils {
     private static Stream<String> getAuthorities(Authentication auth) {
         return auth.getAuthorities().stream().map(GrantedAuthority::getAuthority);
     }
+
+    public static Long getCurrentUserId() {
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication = context.getAuthentication();
+
+        if (authentication instanceof JwtAuthenticationToken jwtAuth) {
+            Map<String, Object> userClaim = jwtAuth.getToken().getClaim("user");
+
+            if (userClaim != null && userClaim.containsKey("id")) {
+                return Long.valueOf(userClaim.get("id").toString());
+            }
+        }
+
+        throw new AppException(401, "Unauthorized", "Không thể lấy thông tin người dùng từ token");
+
+    }
+
 }

@@ -42,14 +42,14 @@ public class LocationController {
     }
 
     @GetMapping("/provinces")
-    public ResponseEntity<Page<LocationDTO>> getAllProvinces(@PageableDefault(page = 0, size = 20) Pageable pageable) {
+    public ResponseEntity<Page<LocationDTO>> getAllProvinces(@PageableDefault(page = 0, size = 99) Pageable pageable) {
         Page<LocationDTO> provinces = this.locationService.getListProvinces(LocationDTO.class, pageable);
         return ResponseEntity.ok().body(provinces);
     }
 
     @GetMapping("/districts")
     public ResponseEntity<Page<LocationDTO>> getListDistrictsWithProvince(Optional<String> provinceId,
-            Pageable pageable) {
+            @PageableDefault(page = 0, size = 99) Pageable pageable) {
         if (provinceId.isEmpty()) {
             throw new AppException(400, "Param  is required", "provinceId is required");
         }
@@ -61,7 +61,8 @@ public class LocationController {
     }
 
     @GetMapping("/wards")
-    public ResponseEntity<Page<LocationDTO>> getListWardsWithDistrict(Optional<String> districtId, Pageable pageable) {
+    public ResponseEntity<Page<LocationDTO>> getListWardsWithDistrict(Optional<String> districtId,
+            @PageableDefault(page = 0, size = 99) Pageable pageable) {
         if (districtId.isEmpty()) {
             throw new AppException(400, "Param  is required", "districtId is required");
         }

@@ -1,9 +1,12 @@
 package com.minh.shopee.domain.model;
 
+import java.util.List;
+
 import com.minh.shopee.domain.base.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -36,5 +39,8 @@ public class User extends BaseEntity {
 
     @OneToOne(mappedBy = "user")
     private Cart cart;
+
+    @OneToMany(mappedBy = "user")
+    private List<Address> addresses;
 
 }
