@@ -8,11 +8,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.minh.shopee.domain.dto.request.AddAddressDTO;
+import com.minh.shopee.domain.dto.request.EditAddressDTO;
 import com.minh.shopee.domain.model.Address;
 import com.minh.shopee.services.AddressService;
 import com.minh.shopee.services.utils.SecurityUtils;
@@ -49,5 +51,19 @@ public class AddressController {
         return ResponseEntity.ok("Thêm địa chỉ thành công");
 
     }
+
+    @PutMapping("")
+    public ResponseEntity<String> updateAddress(@RequestBody EditAddressDTO request) {
+        if (request.getId() == null) {
+            throw new AppException(400, "Bad Request", "ID địa chỉ không được để trống");
+        }
+
+        this.addressService.updateAddress(request);
+
+        return ResponseEntity.ok("Cập nhật địa chỉ thành công");
+
+    }
+
+    // Trả về danh sách các trường null trong DTO để loại trừ khi copy
 
 }
