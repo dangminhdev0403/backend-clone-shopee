@@ -17,6 +17,7 @@ import com.minh.shopee.repository.DistrictRepository;
 import com.minh.shopee.repository.ProvinceRepository;
 import com.minh.shopee.repository.WardRepository;
 import com.minh.shopee.services.LocationService;
+import com.minh.shopee.services.utils.error.AppException;
 import com.minh.shopee.services.utils.files.ExcelHelper;
 import com.minh.shopee.services.utils.files.data.LocationData;
 
@@ -102,21 +103,41 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public <T> Page<T> getListProvinces(Class<T> type , Pageable pageable) {
+    public <T> Page<T> getListProvinces(Class<T> type, Pageable pageable) {
         log.debug("Fetching list of provinces with projection type: {}", type.getSimpleName());
         return this.provinceRepository.findAllBy(type, pageable);
     }
 
     @Override
-    public <T> Page<T> getListDistricts(Long provinceId, Class<T> type ,Pageable pageable) {
+    public <T> Page<T> getListDistricts(Long provinceId, Class<T> type, Pageable pageable) {
         log.debug("Fetching list of districts with projection type: {}", type.getSimpleName());
         return this.districtRepository.findByProvinceId(provinceId, type, pageable);
     }
 
     @Override
-    public <T> Page<T> getListWards(Long provinceId, Class<T> type ,Pageable pageable) {
+    public <T> Page<T> getListWards(Long provinceId, Class<T> type, Pageable pageable) {
         log.debug("Fetching list of wards with projection type: {}", type.getSimpleName());
         return this.wardRepository.findByDistrictId(provinceId, type, pageable);
+    }
+
+    @Override
+    public Province getProvinceById(Long provinceId) {
+        return this.provinceRepository.findById(provinceId)
+                .orElseThrow(() -> new AppException(404, "Không tìm thấy tỉnh", "Không tìm thay tỉnh"));
+    }
+
+    @Override
+    public District getDistrictById(Long districtId) {
+
+        return this.districtRepository.findById(districtId)
+                .orElseThrow(() -> new AppException(404, "Không tìm thấy quận/huyện", "Không tìm thay quận/huyện"));
+    }
+
+    @Override
+    public Ward getWardById(Long wardId) {
+
+        return this.wardRepository.findById(wardId)
+                .orElseThrow(() -> new AppException(404, "Không tìm thấy xã", "Không tìm thấy xã"));
     }
 
 }

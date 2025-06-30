@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.minh.shopee.domain.dto.request.AddAddressDTO;
 import com.minh.shopee.domain.dto.request.EditAddressDTO;
-import com.minh.shopee.domain.model.Address;
+import com.minh.shopee.domain.dto.response.AddressFullResponse;
 import com.minh.shopee.services.AddressService;
 import com.minh.shopee.services.utils.SecurityUtils;
 import com.minh.shopee.services.utils.error.AppException;
@@ -30,7 +30,7 @@ public class AddressController {
     private final AddressService addressService;
 
     @GetMapping("")
-    public ResponseEntity<List<Address>> getMyAddresses() {
+    public ResponseEntity<List<AddressFullResponse>> getMyAddresses() {
         JwtAuthenticationToken auth = (JwtAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> userClaim = auth.getToken().getClaim("user");
 
